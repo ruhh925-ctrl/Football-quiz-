@@ -3,70 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Football Quiz - 50 Levels</title>
+    <title>Ultimate Football Career - 50 Levels</title>
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a, #1e1b4b, #311042);
-            --card-bg: rgba(22, 27, 34, 0.85);
-            --border-color: rgba(255, 255, 255, 0.1);
+            --bg-gradient: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%);
+            --card-bg: rgba(15, 23, 42, 0.85);
+            --border-color: rgba(255, 255, 255, 0.15);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent-gold: #f59e0b;
-            --accent-blue: #3b82f6;
-            --accent-green: #10b981;
-            --accent-red: #ef4444;
+            --accent-gold: #fbbf24;
+            --accent-blue: #38bdf8;
+            --accent-green: #34d399;
+            --accent-red: #f87171;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 15px; }
-        .quiz-container { width: 100%; max-width: 650px; background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
+        .quiz-container { width: 100%; max-width: 650px; background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--border-color); border-radius: 20px; padding: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.7); }
+        
+        /* Intro Screen */
+        .intro-screen { text-align: center; padding: 10px 0; }
+        .intro-logo { width: 90px; height: 90px; object-fit: cover; border-radius: 50%; border: 3px solid var(--accent-gold); margin: 0 auto 15px auto; box-shadow: 0 0 25px rgba(251, 191, 36, 0.5); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        .intro-screen h1 { font-size: 2.2rem; margin-bottom: 10px; background: linear-gradient(135deg, #fbbf24, #f43f5e, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .intro-screen p { color: var(--text-muted); margin-bottom: 25px; line-height: 1.6; font-size: 0.95rem; }
+
+        /* Game UI */
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
-        .level-badge { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; letter-spacing: 0.5px; box-shadow: 0 4px 10px rgba(59,130,246,0.3); }
+        .level-badge { background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; box-shadow: 0 4px 12px rgba(56,189,248,0.4); }
         .stats { display: flex; gap: 15px; font-size: 0.9rem; color: var(--text-muted); }
         .stats span { color: var(--accent-gold); font-weight: bold; }
+        
         .question-box { margin-bottom: 20px; }
         .question-box h2 { font-size: 1.25rem; line-height: 1.4; margin-bottom: 8px; color: #fff; }
         .question-meta { font-size: 0.85rem; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+        
         .options-grid { display: grid; gap: 10px; margin-bottom: 20px; }
-        .option-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); color: var(--text-main); padding: 14px 18px; text-align: left; border-radius: 10px; font-size: 0.95rem; cursor: pointer; transition: all 0.2s ease; }
-        .option-btn:hover { background: rgba(59, 130, 246, 0.2); border-color: var(--accent-blue); transform: translateY(-1px); }
+        .option-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); color: var(--text-main); padding: 14px 18px; text-align: left; border-radius: 12px; font-size: 0.95rem; cursor: pointer; transition: all 0.2s ease; }
+        .option-btn:hover { background: rgba(56, 189, 248, 0.2); border-color: var(--accent-blue); transform: translateY(-2px); }
+        
         .footer-controls { display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 15px; }
         .control-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
         .control-btn:hover { background: rgba(255, 255, 255, 0.15); color: #fff; }
-        .control-btn.quit { color: var(--accent-red); border-color: rgba(239, 68, 68, 0.3); }
-        .control-btn.quit:hover { background: rgba(239, 68, 68, 0.2); }
-        .center-screen { text-align: center; padding: 20px 0; }
-        .center-screen h1 { font-size: 2rem; margin-bottom: 12px; background: linear-gradient(135deg, #f59e0b, #ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .center-screen p { color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; font-size: 0.95rem; }
-        .action-btn { background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; width: 100%; padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(16,185,129,0.4); }
-        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(16,185,129,0.6); }
-        .reward-card { background: rgba(0,0,0,0.4); border: 2px solid var(--accent-gold); border-radius: 12px; padding: 15px; margin: 15px 0; text-align: center; }
-        .reward-card img { width: 100px; height: 100px; object-fit: cover; border-radius: 50%; border: 3px solid var(--accent-gold); margin-bottom: 10px; }
-        .reward-card h3 { color: var(--accent-gold); font-size: 1.1rem; margin-bottom: 5px; }
+        .control-btn.quit { color: var(--accent-red); border-color: rgba(248, 113, 113, 0.3); }
+        .control-btn.quit:hover { background: rgba(248, 113, 113, 0.2); }
+        
+        .action-btn { background: linear-gradient(135deg, #34d399, #059669); color: white; border: none; width: 100%; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(52,211,153,0.4); }
+        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(52,211,153,0.6); }
+        
+        .rewards-container { display: flex; gap: 10px; justify-content: center; margin: 15px 0; }
+        .reward-card { background: rgba(0,0,0,0.5); border: 2px solid var(--accent-gold); border-radius: 12px; padding: 12px; text-align: center; flex: 1; }
+        .reward-card img { width: 70px; height: 70px; object-fit: cover; border-radius: 50%; border: 2px solid var(--accent-gold); margin-bottom: 8px; }
+        .reward-card h3 { color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 3px; }
+        .reward-card p { font-size: 0.75rem; color: var(--text-muted); margin: 0; }
     </style>
 </head>
 <body>
 
     <div class="quiz-container" id="app">
-        <div class="center-screen">
-            <h1>Ultimate Football Challenge</h1>
-            <p>Conquer <strong>50 progressive levels</strong> (5 questions each). Battle your way through rising difficulty, secure legendary status, and unlock the ultimate <strong>Trionda Ball</strong> and <strong>GOAT Messi Card</strong>!</p>
-            <button class="action-btn" onclick="startQuiz()">Start Career Mode ⚽</button>
+        <!-- Colorful Intro Screen with Audio Trigger -->
+        <div class="intro-screen">
+            <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200" alt="Ball" class="intro-logo">
+            <h1>Ultimate Football Career</h1>
+            <p>Experience a colorful journey across <strong>50 progressive levels</strong> (5 questions per level). Increase your tactical difficulty, conquer all tiers, and unlock the legendary <strong>Trionda Ball</strong> & <strong>GOAT Messi Card</strong>!</p>
+            <button class="action-btn" onclick="initAudioAndStart()">Start Career & Enable Audio 🎵⚽</button>
         </div>
     </div>
 
     <script>
-        // Full dataset structure representing 50 levels (5 questions per level = 250 questions total pool configured progressively)
+        let audioCtx = null;
+
+        function initAudioAndStart() {
+            // Initialize Web Audio API to handle sound effects & intro music safely
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            playTone(523.25, 0.1); // C5 note confirmation sound
+            setTimeout(() => playTone(659.25, 0.15), 100); // E5 note
+            startQuiz();
+        }
+
+        function playTone(freq, duration) {
+            if (!audioCtx) return;
+            try {
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        // Dynamically build 50 levels with 5 questions each
         const levelsData = [];
         const difficulties = ["Warm-up Tier", "Club Tier", "National Tier", "Elite Tier", "Legendary Tier"];
 
-        // Generates 50 levels dynamically with escalating difficulty themes
         for (let l = 1; l <= 50; l++) {
             let tierIndex = Math.floor((l - 1) / 10);
             let questionsInLevel = [];
             for (let q = 1; q <= 5; q++) {
                 questionsInLevel.push({
-                    question: `Level ${l} - Question ${q}: Who won/achieved milestone related to international & club football history in era tier ${tierIndex + 1}?`,
-                    options: ["Lionel Messi", "Cristiano Ronaldo", "Pele", "Diego Maradona"],
+                    question: `Level ${l} [${difficulties[tierIndex]}] - Question ${q}: Which iconic feat or milestone matches legendary football history?`,
+                    options: ["Lionel Messi magic", "Cristiano Ronaldo header", "Pele masterpiece", "Maradona solo run"],
                     answer: (l + q) % 4
                 });
             }
@@ -91,10 +131,10 @@
         function loadQuestion() {
             const levelObj = levelsData[currentLevelIndex];
             if (currentQIndex >= levelObj.questions.length) {
-                // Advance to next level or finish
                 currentLevelIndex++;
                 currentQIndex = 0;
                 if (currentLevelIndex >= levelsData.length) {
+                    playVictoryFanfare();
                     showVictoryScreen();
                     return;
                 }
@@ -126,6 +166,7 @@
         }
 
         function handleAnswer(selectedIndex) {
+            playTone(440, 0.08); // click sound
             const activeLevel = levelsData[currentLevelIndex];
             const q = activeLevel.questions[currentQIndex];
             
@@ -143,35 +184,43 @@
         }
 
         function quitQuiz() {
-            if(confirm("Are you sure you want to quit the game?")) {
+            if(confirm("Are you sure you want to quit to the main menu?")) {
                 location.reload();
             }
+        }
+
+        function playVictoryFanfare() {
+            setTimeout(() => playTone(523.25, 0.2), 0);
+            setTimeout(() => playTone(659.25, 0.2), 200);
+            setTimeout(() => playTone(783.99, 0.3), 400);
+            setTimeout(() => playTone(1046.50, 0.6), 600);
         }
 
         function showVictoryScreen() {
             const app = document.getElementById('app');
             app.innerHTML = `
-                <div class="center-screen">
-                    <h1>GLORY! 50 LEVELS COMPLETED! 🏆</h1>
-                    <p>You have conquered all 50 tiers with a total score of <strong>${score} points</strong>. You are a true master of the game!</p>
+                <div class="intro-screen">
+                    <h1>GLORY! 50 LEVELS CONQUERED! 🏆</h1>
+                    <p>Absolute Masterclass! You completed all 50 levels with a final score of <strong>${score} points</strong> and unlocked legendary status.</p>
                     
-                    <div class="reward-card">
-                        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200" alt="Trionda Ball">
-                        <h3>Trionda Ball Unlocked</h3>
-                        <p style="font-size:0.8rem; margin-bottom:0;">Legendary match ball engineered for ultimate precision.</p>
+                    <div class="rewards-container">
+                        <div class="reward-card">
+                            <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200" alt="Trionda Ball">
+                            <h3>Trionda Ball</h3>
+                            <p>Ultimate elite ball texture.</p>
+                        </div>
+                        <div class="reward-card">
+                            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=200" alt="GOAT Messi Card">
+                            <h3>GOAT Messi</h3>
+                            <p>Ultimate card unlocked.</p>
+                        </div>
                     </div>
 
-                    <div class="reward-card">
-                        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=200" alt="GOAT Messi Card">
-                        <h3>GOAT Messi Special Card</h3>
-                        <p style="font-size:0.8rem; margin-bottom:0;">Exclusive collector's edition card celebrating ultimate greatness.</p>
-                    </div>
-
-                    <button class="action-btn" onclick="startQuiz()" style="margin-top: 15px;">Play Again 🔄</button>
+                    <button class="action-btn" onclick="startQuiz()" style="margin-top: 15px;">Play Career Again 🔄</button>
                 </div>
             `;
         }
     </script>
 </body>
 </html>
-             
+         
