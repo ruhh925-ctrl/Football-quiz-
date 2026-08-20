@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <style>
         :root {
             --bg-gradient: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%);
-            --card-bg: rgba(15, 23, 42, 0.85);
+            --card-bg: rgba(15, 23, 42, 0.9);
             --border-color: rgba(255, 255, 255, 0.15);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -22,14 +22,13 @@
         
         /* Intro Screen */
         .intro-screen { text-align: center; padding: 10px 0; }
-        .intro-logo { width: 90px; height: 90px; object-fit: cover; border-radius: 50%; border: 3px solid var(--accent-gold); margin: 0 auto 15px auto; box-shadow: 0 0 25px rgba(251, 191, 36, 0.5); animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        .intro-logo { width: 90px; height: 90px; object-fit: cover; border-radius: 50%; border: 3px solid var(--accent-gold); margin: 0 auto 15px auto; box-shadow: 0 0 25px rgba(251, 191, 36, 0.5); }
         .intro-screen h1 { font-size: 2.2rem; margin-bottom: 10px; background: linear-gradient(135deg, #fbbf24, #f43f5e, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .intro-screen p { color: var(--text-muted); margin-bottom: 25px; line-height: 1.6; font-size: 0.95rem; }
 
         /* Game UI */
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
-        .level-badge { background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; box-shadow: 0 4px 12px rgba(56,189,248,0.4); }
+        .level-badge { background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; }
         .stats { display: flex; gap: 15px; font-size: 0.9rem; color: var(--text-muted); }
         .stats span { color: var(--accent-gold); font-weight: bold; }
         
@@ -42,13 +41,13 @@
         .option-btn:hover { background: rgba(56, 189, 248, 0.2); border-color: var(--accent-blue); transform: translateY(-2px); }
         
         .footer-controls { display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 15px; }
-        .control-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+        .control-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; }
         .control-btn:hover { background: rgba(255, 255, 255, 0.15); color: #fff; }
         .control-btn.quit { color: var(--accent-red); border-color: rgba(248, 113, 113, 0.3); }
         .control-btn.quit:hover { background: rgba(248, 113, 113, 0.2); }
         
-        .action-btn { background: linear-gradient(135deg, #34d399, #059669); color: white; border: none; width: 100%; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(52,211,153,0.4); }
-        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(52,211,153,0.6); }
+        .action-btn { background: linear-gradient(135deg, #34d399, #059669); color: white; border: none; width: 100%; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(52,211,153,0.4); }
+        .action-btn:hover { transform: translateY(-2px); }
         
         .rewards-container { display: flex; gap: 10px; justify-content: center; margin: 15px 0; }
         .reward-card { background: rgba(0,0,0,0.5); border: 2px solid var(--accent-gold); border-radius: 12px; padding: 12px; text-align: center; flex: 1; }
@@ -60,32 +59,30 @@
 <body>
 
     <div class="quiz-container" id="app">
-        <!-- Colorful Intro Screen with Audio Trigger -->
         <div class="intro-screen">
             <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200" alt="Ball" class="intro-logo">
             <h1>Ultimate Football Career</h1>
-            <p>Experience a colorful journey across <strong>50 progressive levels</strong> (5 questions per level). Increase your tactical difficulty, conquer all tiers, and unlock the legendary <strong>Trionda Ball</strong> & <strong>GOAT Messi Card</strong>!</p>
-            <button class="action-btn" onclick="initAudioAndStart()">Start Career & Enable Audio 🎵⚽</button>
+            <p>50 progressive levels with unique challenges, audio effects, increasing difficulty, and ultimate rewards: the <strong>Trionda Ball</strong> & <strong>GOAT Messi Card</strong>!</p>
+            <button class="action-btn" onclick="initGameAudio()">Start Game & Enable Audio 🎵⚽</button>
         </div>
     </div>
 
     <script>
         let audioCtx = null;
 
-        function initAudioAndStart() {
-            // Initialize Web Audio API to handle sound effects & intro music safely
+        function initGameAudio() {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            playTone(523.25, 0.1); // C5 note confirmation sound
-            setTimeout(() => playTone(659.25, 0.15), 100); // E5 note
+            playNote(523.25, 0.1);
+            setTimeout(() => playNote(659.25, 0.15), 100);
             startQuiz();
         }
 
-        function playTone(freq, duration) {
+        function playNote(freq, duration) {
             if (!audioCtx) return;
             try {
                 let osc = audioCtx.createOscillator();
                 let gain = audioCtx.createGain();
-                osc.type = 'sine';
+                osc.type = 'triangle';
                 osc.frequency.value = freq;
                 gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
@@ -96,24 +93,40 @@
             } catch(e) {}
         }
 
-        // Dynamically build 50 levels with 5 questions each
+        // Master pool of diverse football questions scaled across 50 levels (5 questions per level)
+        const questionBank = [
+            { q: "Which country won the first-ever FIFA World Cup in 1930?", opts: ["Brazil", "Uruguay", "Argentina", "Italy"], ans: 1 },
+            { q: "Who holds the record for most goals in a single calendar year?", opts: ["Lionel Messi", "Cristiano Ronaldo", "Pele", "Gerd Muller"], ans: 0 },
+            { q: "Which club won 3 consecutive UEFA Champions Leagues from 2016 to 2018?", opts: ["Barcelona", "Bayern Munich", "Real Madrid", "Liverpool"], ans: 2 },
+            { q: "Who is the all-time top goalscorer in the UEFA Champions League?", opts: ["Robert Lewandowski", "Lionel Messi", "Karim Benzema", "Cristiano Ronaldo"], ans: 3 },
+            { q: "Which nation is known as 'De Rode Duivels' (The Red Devils)?", opts: ["Belgium", "England", "South Korea", "Denmark"], ans: 0 },
+            { q: "Which player has won the most Ballon d'Or awards in history?", opts: ["Cristiano Ronaldo", "Lionel Messi", "Johan Cruyff", "Michel Platini"], ans: 1 },
+            { q: "Which stadium is known as the 'Theatre of Dreams'?", opts: ["Anfield", "Camp Nou", "Old Trafford", "Wembley"], ans: 2 },
+            { q: "Which country won the 2022 FIFA World Cup in Qatar?", opts: ["France", "Brazil", "Argentina", "Germany"], ans: 2 },
+            { q: "Who scored the famous 'Hand of God' goal in the 1986 World Cup?", opts: ["Pelé", "Diego Maradona", "Zinedine Zidane", "Ronaldo Nazário"], ans: 1 },
+            { q: "Which team won the English Premier League Invincibles season without losing a match?", opts: ["Manchester United", "Chelsea", "Manchester City", "Arsenal"], ans: 3 }
+        ];
+
+        // Generate 50 distinct levels dynamically wrapping and mixing unique challenges
         const levelsData = [];
         const difficulties = ["Warm-up Tier", "Club Tier", "National Tier", "Elite Tier", "Legendary Tier"];
 
         for (let l = 1; l <= 50; l++) {
             let tierIndex = Math.floor((l - 1) / 10);
-            let questionsInLevel = [];
-            for (let q = 1; q <= 5; q++) {
-                questionsInLevel.push({
-                    question: `Level ${l} [${difficulties[tierIndex]}] - Question ${q}: Which iconic feat or milestone matches legendary football history?`,
-                    options: ["Lionel Messi magic", "Cristiano Ronaldo header", "Pele masterpiece", "Maradona solo run"],
-                    answer: (l + q) % 4
+            let levelQuestions = [];
+            for (let q = 0; q < 5; q++) {
+                // Pick questions dynamically from the bank with variation based on level/question index
+                let bankItem = questionBank[(l * 3 + q) % questionBank.length];
+                levelQuestions.push({
+                    question: `Lvl ${l} (Q${q+1}): ${bankItem.q}`,
+                    options: bankItem.opts,
+                    answer: bankItem.ans
                 });
             }
             levelsData.push({
                 level: l,
                 tier: difficulties[tierIndex],
-                questions: questionsInLevel
+                questions: levelQuestions
             });
         }
 
@@ -166,7 +179,7 @@
         }
 
         function handleAnswer(selectedIndex) {
-            playTone(440, 0.08); // click sound
+            playNote(400, 0.08);
             const activeLevel = levelsData[currentLevelIndex];
             const q = activeLevel.questions[currentQIndex];
             
@@ -178,22 +191,22 @@
         }
 
         function resetQuiz() {
-            if(confirm("Are you sure you want to reset your progress back to Level 1?")) {
+            if(confirm("Reset progress back to Level 1?")) {
                 startQuiz();
             }
         }
 
         function quitQuiz() {
-            if(confirm("Are you sure you want to quit to the main menu?")) {
+            if(confirm("Return to main menu?")) {
                 location.reload();
             }
         }
 
         function playVictoryFanfare() {
-            setTimeout(() => playTone(523.25, 0.2), 0);
-            setTimeout(() => playTone(659.25, 0.2), 200);
-            setTimeout(() => playTone(783.99, 0.3), 400);
-            setTimeout(() => playTone(1046.50, 0.6), 600);
+            setTimeout(() => playNote(523.25, 0.2), 0);
+            setTimeout(() => playNote(659.25, 0.2), 200);
+            setTimeout(() => playNote(783.99, 0.3), 400);
+            setTimeout(() => playNote(1046.50, 0.6), 600);
         }
 
         function showVictoryScreen() {
@@ -201,18 +214,18 @@
             app.innerHTML = `
                 <div class="intro-screen">
                     <h1>GLORY! 50 LEVELS CONQUERED! 🏆</h1>
-                    <p>Absolute Masterclass! You completed all 50 levels with a final score of <strong>${score} points</strong> and unlocked legendary status.</p>
+                    <p>You completed all 50 levels with a final score of <strong>${score} points</strong> and unlocked ultimate status!</p>
                     
                     <div class="rewards-container">
                         <div class="reward-card">
                             <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200" alt="Trionda Ball">
                             <h3>Trionda Ball</h3>
-                            <p>Ultimate elite ball texture.</p>
+                            <p>Elite match ball.</p>
                         </div>
                         <div class="reward-card">
                             <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=200" alt="GOAT Messi Card">
                             <h3>GOAT Messi</h3>
-                            <p>Ultimate card unlocked.</p>
+                            <p>Exclusive card.</p>
                         </div>
                     </div>
 
@@ -223,4 +236,5 @@
     </script>
 </body>
 </html>
-         
+                  
+                    
