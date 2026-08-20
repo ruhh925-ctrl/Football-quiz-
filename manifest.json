@@ -1,0 +1,16 @@
+{
+  "name": "Ultimate Football Career",
+  "short_name": "Football Quiz",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=512",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
