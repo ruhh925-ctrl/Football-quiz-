@@ -1,21 +1,129 @@
-<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Football Quiz</title>
-    <meta name="description" content="Football Quiz — built on Replit. Update this description to reflect the app.">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Football Quiz">
-    <meta property="og:description" content="Football Quiz — built on Replit. Update this description to reflect the app.">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Football Quiz">
-    <meta name="twitter:description" content="Football Quiz — built on Replit. Update this description to reflect the app.">
-    <link rel="icon" type="image/svg+xml" href="https://football-quiz-game--ruhh925.replit.app/favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" crossorigin="" href="https://football-quiz-game--ruhh925.replit.app/assets/index-BM6G7lYJ.css">
-  </head>
-  <body>
-    
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --accent-green: #238636;
+            --accent-green-hover: #2ea043;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .quiz-container { width: 100%; max-width: 600px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        .header h2 { font-size: 1.2rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .badge { background: #21262d; border: 1px solid var(--border-color); padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; color: var(--text-main); }
+        .question-box { margin-bottom: 25px; }
+        .question-box h1 { font-size: 1.5rem; line-height: 1.4; margin-bottom: 10px; }
+        .subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
+        .options-grid { display: grid; gap: 12px; margin-bottom: 25px; }
+        .option-btn { background-color: #21262d; border: 1px solid var(--border-color); color: var(--text-main); padding: 15px 20px; text-align: left; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: all 0.2s ease; }
+        .option-btn:hover { background-color: #30363d; border-color: #8b949e; }
+        .action-btn { background-color: var(--accent-green); color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
+        .action-btn:hover { background-color: var(--accent-green-hover); }
+        .center-screen { text-align: center; }
+        .center-screen h1 { color: var(--accent-green-hover); margin-bottom: 15px; }
+        .center-screen p { color: var(--text-muted); margin-bottom: 25px; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container" id="app">
+        <div class="center-screen">
+            <h1>The Beautiful Game.<br>The Tough Questions.</h1>
+            <p>Ten levels. Fifty questions. One chance to climb from the warm-up to the final whistle. Trust your instincts, back your answer, and see where you rank.</p>
+            <button class="action-btn" onclick="startQuiz()">Kick off ⚽</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Which country won the first-ever FIFA World Cup in 1930?",
+                options: ["Brazil", "Uruguay", "Argentina", "Italy"],
+                answer: 1
+            },
+            {
+                question: "Who holds the record for the most goals scored in a single calendar year?",
+                options: ["Lionel Messi", "Cristiano Ronaldo", "Gerd Müller", "Robert Lewandowski"],
+                answer: 0
+            },
+            {
+                question: "Which club won three consecutive UEFA Champions League titles from 2016 to 2018?",
+                options: ["Barcelona", "Bayern Munich", "Real Madrid", "AC Milan"],
+                answer: 2
+            },
+            {
+                question: "Who is the all-time top goalscorer in the UEFA Champions League?",
+                options: ["Lionel Messi", "Robert Lewandowski", "Karim Benzema", "Cristiano Ronaldo"],
+                answer: 3
+            },
+            {
+                question: "Which national team is known as 'De Rode Duivels' or 'The Red Devils'?",
+                options: ["Belgium", "England", "South Korea", "Denmark"],
+                answer: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function startQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                showResults();
+                return;
+            }
+
+            const q = questions[currentQuestion];
+            const app = document.getElementById('app');
+            
+            app.innerHTML = `
+                <div class="header">
+                    <h2>Season 01 • Open Division</h2>
+                    <div class="badge">Q ${currentQuestion + 1} / ${questions.length}</div>
+                </div>
+                <div class="question-box">
+                    <h1>${q.question}</h1>
+                </div>
+                <div class="options-grid">
+                    ${q.options.map((opt, index) => `
+                        <button class="option-btn" onclick="checkAnswer(${index})">${opt}</button>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function checkAnswer(selected) {
+            if (selected === questions[currentQuestion].answer) {
+                score++;
+            }
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function showResults() {
+            const app = document.getElementById('app');
+            app.innerHTML = `
+                <div class="center-screen">
+                    <h1>Full Time! 🏆</h1>
+                    <p>You scored <strong>${score}</strong> out of <strong>${questions.length}</strong>.</p>
+                    <button class="action-btn" onclick="startQuiz()">Play Again</button>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
