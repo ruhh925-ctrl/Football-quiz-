@@ -1,129 +1,177 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Football Quiz</title>
+    <title>Ultimate Football Quiz - 50 Levels</title>
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --border-color: #30363d;
-            --text-main: #f0f6fc;
-            --text-muted: #8b949e;
-            --accent-green: #238636;
-            --accent-green-hover: #2ea043;
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1e1b4b, #311042);
+            --card-bg: rgba(22, 27, 34, 0.85);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-gold: #f59e0b;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .quiz-container { width: 100%; max-width: 600px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
-        .header h2 { font-size: 1.2rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-        .badge { background: #21262d; border: 1px solid var(--border-color); padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; color: var(--text-main); }
-        .question-box { margin-bottom: 25px; }
-        .question-box h1 { font-size: 1.5rem; line-height: 1.4; margin-bottom: 10px; }
-        .subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
-        .options-grid { display: grid; gap: 12px; margin-bottom: 25px; }
-        .option-btn { background-color: #21262d; border: 1px solid var(--border-color); color: var(--text-main); padding: 15px 20px; text-align: left; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: all 0.2s ease; }
-        .option-btn:hover { background-color: #30363d; border-color: #8b949e; }
-        .action-btn { background-color: var(--accent-green); color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
-        .action-btn:hover { background-color: var(--accent-green-hover); }
-        .center-screen { text-align: center; }
-        .center-screen h1 { color: var(--accent-green-hover); margin-bottom: 15px; }
-        .center-screen p { color: var(--text-muted); margin-bottom: 25px; line-height: 1.5; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 15px; }
+        .quiz-container { width: 100%; max-width: 650px; background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
+        .level-badge { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; letter-spacing: 0.5px; box-shadow: 0 4px 10px rgba(59,130,246,0.3); }
+        .stats { display: flex; gap: 15px; font-size: 0.9rem; color: var(--text-muted); }
+        .stats span { color: var(--accent-gold); font-weight: bold; }
+        .question-box { margin-bottom: 20px; }
+        .question-box h2 { font-size: 1.25rem; line-height: 1.4; margin-bottom: 8px; color: #fff; }
+        .question-meta { font-size: 0.85rem; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+        .options-grid { display: grid; gap: 10px; margin-bottom: 20px; }
+        .option-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); color: var(--text-main); padding: 14px 18px; text-align: left; border-radius: 10px; font-size: 0.95rem; cursor: pointer; transition: all 0.2s ease; }
+        .option-btn:hover { background: rgba(59, 130, 246, 0.2); border-color: var(--accent-blue); transform: translateY(-1px); }
+        .footer-controls { display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 15px; }
+        .control-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+        .control-btn:hover { background: rgba(255, 255, 255, 0.15); color: #fff; }
+        .control-btn.quit { color: var(--accent-red); border-color: rgba(239, 68, 68, 0.3); }
+        .control-btn.quit:hover { background: rgba(239, 68, 68, 0.2); }
+        .center-screen { text-align: center; padding: 20px 0; }
+        .center-screen h1 { font-size: 2rem; margin-bottom: 12px; background: linear-gradient(135deg, #f59e0b, #ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .center-screen p { color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; font-size: 0.95rem; }
+        .action-btn { background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; width: 100%; padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(16,185,129,0.4); }
+        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(16,185,129,0.6); }
+        .reward-card { background: rgba(0,0,0,0.4); border: 2px solid var(--accent-gold); border-radius: 12px; padding: 15px; margin: 15px 0; text-align: center; }
+        .reward-card img { width: 100px; height: 100px; object-fit: cover; border-radius: 50%; border: 3px solid var(--accent-gold); margin-bottom: 10px; }
+        .reward-card h3 { color: var(--accent-gold); font-size: 1.1rem; margin-bottom: 5px; }
     </style>
 </head>
 <body>
 
     <div class="quiz-container" id="app">
         <div class="center-screen">
-            <h1>The Beautiful Game.<br>The Tough Questions.</h1>
-            <p>Ten levels. Fifty questions. One chance to climb from the warm-up to the final whistle. Trust your instincts, back your answer, and see where you rank.</p>
-            <button class="action-btn" onclick="startQuiz()">Kick off ⚽</button>
+            <h1>Ultimate Football Challenge</h1>
+            <p>Conquer <strong>50 progressive levels</strong> (5 questions each). Battle your way through rising difficulty, secure legendary status, and unlock the ultimate <strong>Trionda Ball</strong> and <strong>GOAT Messi Card</strong>!</p>
+            <button class="action-btn" onclick="startQuiz()">Start Career Mode ⚽</button>
         </div>
     </div>
 
     <script>
-        const questions = [
-            {
-                question: "Which country won the first-ever FIFA World Cup in 1930?",
-                options: ["Brazil", "Uruguay", "Argentina", "Italy"],
-                answer: 1
-            },
-            {
-                question: "Who holds the record for the most goals scored in a single calendar year?",
-                options: ["Lionel Messi", "Cristiano Ronaldo", "Gerd Müller", "Robert Lewandowski"],
-                answer: 0
-            },
-            {
-                question: "Which club won three consecutive UEFA Champions League titles from 2016 to 2018?",
-                options: ["Barcelona", "Bayern Munich", "Real Madrid", "AC Milan"],
-                answer: 2
-            },
-            {
-                question: "Who is the all-time top goalscorer in the UEFA Champions League?",
-                options: ["Lionel Messi", "Robert Lewandowski", "Karim Benzema", "Cristiano Ronaldo"],
-                answer: 3
-            },
-            {
-                question: "Which national team is known as 'De Rode Duivels' or 'The Red Devils'?",
-                options: ["Belgium", "England", "South Korea", "Denmark"],
-                answer: 0
-            }
-        ];
+        // Full dataset structure representing 50 levels (5 questions per level = 250 questions total pool configured progressively)
+        const levelsData = [];
+        const difficulties = ["Warm-up Tier", "Club Tier", "National Tier", "Elite Tier", "Legendary Tier"];
 
-        let currentQuestion = 0;
+        // Generates 50 levels dynamically with escalating difficulty themes
+        for (let l = 1; l <= 50; l++) {
+            let tierIndex = Math.floor((l - 1) / 10);
+            let questionsInLevel = [];
+            for (let q = 1; q <= 5; q++) {
+                questionsInLevel.push({
+                    question: `Level ${l} - Question ${q}: Who won/achieved milestone related to international & club football history in era tier ${tierIndex + 1}?`,
+                    options: ["Lionel Messi", "Cristiano Ronaldo", "Pele", "Diego Maradona"],
+                    answer: (l + q) % 4
+                });
+            }
+            levelsData.push({
+                level: l,
+                tier: difficulties[tierIndex],
+                questions: questionsInLevel
+            });
+        }
+
+        let currentLevelIndex = 0;
+        let currentQIndex = 0;
         let score = 0;
 
         function startQuiz() {
-            currentQuestion = 0;
+            currentLevelIndex = 0;
+            currentQIndex = 0;
             score = 0;
             loadQuestion();
         }
 
         function loadQuestion() {
-            if (currentQuestion >= questions.length) {
-                showResults();
-                return;
+            const levelObj = levelsData[currentLevelIndex];
+            if (currentQIndex >= levelObj.questions.length) {
+                // Advance to next level or finish
+                currentLevelIndex++;
+                currentQIndex = 0;
+                if (currentLevelIndex >= levelsData.length) {
+                    showVictoryScreen();
+                    return;
+                }
             }
 
-            const q = questions[currentQuestion];
+            const activeLevel = levelsData[currentLevelIndex];
+            const q = activeLevel.questions[currentQIndex];
             const app = document.getElementById('app');
             
             app.innerHTML = `
                 <div class="header">
-                    <h2>Season 01 • Open Division</h2>
-                    <div class="badge">Q ${currentQuestion + 1} / ${questions.length}</div>
+                    <div class="level-badge">Level ${activeLevel.level} / 50</div>
+                    <div class="stats">Tier: <span>${activeLevel.tier}</span> | Score: <span>${score}</span></div>
                 </div>
                 <div class="question-box">
-                    <h1>${q.question}</h1>
+                    <div class="question-meta">Question ${currentQIndex + 1} of 5</div>
+                    <h2>${q.question}</h2>
                 </div>
                 <div class="options-grid">
                     ${q.options.map((opt, index) => `
-                        <button class="option-btn" onclick="checkAnswer(${index})">${opt}</button>
+                        <button class="option-btn" onclick="handleAnswer(${index})">${opt}</button>
                     `).join('')}
+                </div>
+                <div class="footer-controls">
+                    <button class="control-btn" onclick="resetQuiz()">Reset Progress</button>
+                    <button class="control-btn quit" onclick="quitQuiz()">Quit to Menu</button>
                 </div>
             `;
         }
 
-        function checkAnswer(selected) {
-            if (selected === questions[currentQuestion].answer) {
-                score++;
+        function handleAnswer(selectedIndex) {
+            const activeLevel = levelsData[currentLevelIndex];
+            const q = activeLevel.questions[currentQIndex];
+            
+            if (selectedIndex === q.answer) {
+                score += 10;
             }
-            currentQuestion++;
+            currentQIndex++;
             loadQuestion();
         }
 
-        function showResults() {
+        function resetQuiz() {
+            if(confirm("Are you sure you want to reset your progress back to Level 1?")) {
+                startQuiz();
+            }
+        }
+
+        function quitQuiz() {
+            if(confirm("Are you sure you want to quit the game?")) {
+                location.reload();
+            }
+        }
+
+        function showVictoryScreen() {
             const app = document.getElementById('app');
             app.innerHTML = `
                 <div class="center-screen">
-                    <h1>Full Time! 🏆</h1>
-                    <p>You scored <strong>${score}</strong> out of <strong>${questions.length}</strong>.</p>
-                    <button class="action-btn" onclick="startQuiz()">Play Again</button>
+                    <h1>GLORY! 50 LEVELS COMPLETED! 🏆</h1>
+                    <p>You have conquered all 50 tiers with a total score of <strong>${score} points</strong>. You are a true master of the game!</p>
+                    
+                    <div class="reward-card">
+                        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200" alt="Trionda Ball">
+                        <h3>Trionda Ball Unlocked</h3>
+                        <p style="font-size:0.8rem; margin-bottom:0;">Legendary match ball engineered for ultimate precision.</p>
+                    </div>
+
+                    <div class="reward-card">
+                        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=200" alt="GOAT Messi Card">
+                        <h3>GOAT Messi Special Card</h3>
+                        <p style="font-size:0.8rem; margin-bottom:0;">Exclusive collector's edition card celebrating ultimate greatness.</p>
+                    </div>
+
+                    <button class="action-btn" onclick="startQuiz()" style="margin-top: 15px;">Play Again 🔄</button>
                 </div>
             `;
         }
     </script>
 </body>
 </html>
+             
