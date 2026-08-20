@@ -1,12 +1,12 @@
- <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Ultimate Football Career - 50 Levels</title>
-   <link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200">
-<link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200">
- <style>
+    <title>Ultimate Football Career - 50 Levels</title>
+    <link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200">
+    <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200">
+    <style>
         :root {
             --bg-gradient: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%);
             --card-bg: rgba(15, 23, 42, 0.9);
@@ -21,36 +21,27 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 15px; }
         .quiz-container { width: 100%; max-width: 650px; background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--border-color); border-radius: 20px; padding: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.7); }
-        
-        /* Intro Screen */
         .intro-screen { text-align: center; padding: 10px 0; }
         .intro-logo { width: 90px; height: 90px; object-fit: cover; border-radius: 50%; border: 3px solid var(--accent-gold); margin: 0 auto 15px auto; box-shadow: 0 0 25px rgba(251, 191, 36, 0.5); }
         .intro-screen h1 { font-size: 2.2rem; margin-bottom: 10px; background: linear-gradient(135deg, #fbbf24, #f43f5e, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .intro-screen p { color: var(--text-muted); margin-bottom: 25px; line-height: 1.6; font-size: 0.95rem; }
-
-        /* Game UI */
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
         .level-badge { background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; }
         .stats { display: flex; gap: 15px; font-size: 0.9rem; color: var(--text-muted); }
         .stats span { color: var(--accent-gold); font-weight: bold; }
-        
         .question-box { margin-bottom: 20px; }
         .question-box h2 { font-size: 1.25rem; line-height: 1.4; margin-bottom: 8px; color: #fff; }
         .question-meta { font-size: 0.85rem; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
-        
         .options-grid { display: grid; gap: 10px; margin-bottom: 20px; }
         .option-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); color: var(--text-main); padding: 14px 18px; text-align: left; border-radius: 12px; font-size: 0.95rem; cursor: pointer; transition: all 0.2s ease; }
         .option-btn:hover { background: rgba(56, 189, 248, 0.2); border-color: var(--accent-blue); transform: translateY(-2px); }
-        
         .footer-controls { display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 15px; }
         .control-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; }
         .control-btn:hover { background: rgba(255, 255, 255, 0.15); color: #fff; }
         .control-btn.quit { color: var(--accent-red); border-color: rgba(248, 113, 113, 0.3); }
         .control-btn.quit:hover { background: rgba(248, 113, 113, 0.2); }
-        
         .action-btn { background: linear-gradient(135deg, #34d399, #059669); color: white; border: none; width: 100%; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(52,211,153,0.4); }
         .action-btn:hover { transform: translateY(-2px); }
-        
         .rewards-container { display: flex; gap: 10px; justify-content: center; margin: 15px 0; }
         .reward-card { background: rgba(0,0,0,0.5); border: 2px solid var(--accent-gold); border-radius: 12px; padding: 12px; text-align: center; flex: 1; }
         .reward-card img { width: 70px; height: 70px; object-fit: cover; border-radius: 50%; border: 2px solid var(--accent-gold); margin-bottom: 8px; }
@@ -95,7 +86,6 @@
             } catch(e) {}
         }
 
-        // Master pool of diverse football questions scaled across 50 levels (5 questions per level)
         const questionBank = [
             { q: "Which country won the first-ever FIFA World Cup in 1930?", opts: ["Brazil", "Uruguay", "Argentina", "Italy"], ans: 1 },
             { q: "Who holds the record for most goals in a single calendar year?", opts: ["Lionel Messi", "Cristiano Ronaldo", "Pele", "Gerd Muller"], ans: 0 },
@@ -109,7 +99,6 @@
             { q: "Which team won the English Premier League Invincibles season without losing a match?", opts: ["Manchester United", "Chelsea", "Manchester City", "Arsenal"], ans: 3 }
         ];
 
-        // Generate 50 distinct levels dynamically wrapping and mixing unique challenges
         const levelsData = [];
         const difficulties = ["Warm-up Tier", "Club Tier", "National Tier", "Elite Tier", "Legendary Tier"];
 
@@ -117,7 +106,6 @@
             let tierIndex = Math.floor((l - 1) / 10);
             let levelQuestions = [];
             for (let q = 0; q < 5; q++) {
-                // Pick questions dynamically from the bank with variation based on level/question index
                 let bankItem = questionBank[(l * 3 + q) % questionBank.length];
                 levelQuestions.push({
                     question: `Lvl ${l} (Q${q+1}): ${bankItem.q}`,
@@ -238,5 +226,4 @@
     </script>
 </body>
 </html>
-                  
-                    
+                                  
