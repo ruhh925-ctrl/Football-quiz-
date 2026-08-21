@@ -1,230 +1,274 @@
    <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Football Career - 50 Levels</title>
-    <link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200">
-    <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200">
-    <style>
-        :root {
-            --bg-gradient: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%);
-            --card-bg: rgba(15, 23, 42, 0.9);
-            --border-color: rgba(255, 255, 255, 0.15);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-gold: #fbbf24;
-            --accent-blue: #38bdf8;
-            --accent-green: #34d399;
-            --accent-red: #f87171;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 15px; }
-        .quiz-container { width: 100%; max-width: 650px; background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--border-color); border-radius: 20px; padding: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.7); }
-        .intro-screen { text-align: center; padding: 10px 0; }
-        .intro-logo { width: 90px; height: 90px; object-fit: cover; border-radius: 50%; border: 3px solid var(--accent-gold); margin: 0 auto 15px auto; box-shadow: 0 0 25px rgba(251, 191, 36, 0.5); }
-        .intro-screen h1 { font-size: 2.2rem; margin-bottom: 10px; background: linear-gradient(135deg, #fbbf24, #f43f5e, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .intro-screen p { color: var(--text-muted); margin-bottom: 25px; line-height: 1.6; font-size: 0.95rem; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
-        .level-badge { background: linear-gradient(135deg, #38bdf8, #2563eb); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; }
-        .stats { display: flex; gap: 15px; font-size: 0.9rem; color: var(--text-muted); }
-        .stats span { color: var(--accent-gold); font-weight: bold; }
-        .question-box { margin-bottom: 20px; }
-        .question-box h2 { font-size: 1.25rem; line-height: 1.4; margin-bottom: 8px; color: #fff; }
-        .question-meta { font-size: 0.85rem; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
-        .options-grid { display: grid; gap: 10px; margin-bottom: 20px; }
-        .option-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); color: var(--text-main); padding: 14px 18px; text-align: left; border-radius: 12px; font-size: 0.95rem; cursor: pointer; transition: all 0.2s ease; }
-        .option-btn:hover { background: rgba(56, 189, 248, 0.2); border-color: var(--accent-blue); transform: translateY(-2px); }
-        .footer-controls { display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 15px; }
-        .control-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; }
-        .control-btn:hover { background: rgba(255, 255, 255, 0.15); color: #fff; }
-        .control-btn.quit { color: var(--accent-red); border-color: rgba(248, 113, 113, 0.3); }
-        .control-btn.quit:hover { background: rgba(248, 113, 113, 0.2); }
-        .action-btn { background: linear-gradient(135deg, #34d399, #059669); color: white; border: none; width: 100%; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(52,211,153,0.4); }
-        .action-btn:hover { transform: translateY(-2px); }
-        .rewards-container { display: flex; gap: 10px; justify-content: center; margin: 15px 0; }
-        .reward-card { background: rgba(0,0,0,0.5); border: 2px solid var(--accent-gold); border-radius: 12px; padding: 12px; text-align: center; flex: 1; }
-        .reward-card img { width: 70px; height: 70px; object-fit: cover; border-radius: 50%; border: 2px solid var(--accent-gold); margin-bottom: 8px; }
-        .reward-card h3 { color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 3px; }
-        .reward-card p { font-size: 0.75rem; color: var(--text-muted); margin: 0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Football Career - 50 Levels</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=512">
+<style>
+    :root {
+        --bg-main: #fbf9f5;
+        --card-bg: #ffffff;
+        --text-main: #132238;
+        --text-muted: #52606d;
+        --accent-green: #00875a;
+        --accent-orange: #ff5630;
+        --border-color: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+
+    .app-container { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 20px; }
+
+    /* Top Navigation Header */
+    .header { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; }
+    .logo-badge { display: flex; align-items: center; gap: 8px; background: #fff; padding: 8px 14px; border-radius: 12px; font-weight: 800; font-size: 14px; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .logo-badge span { background: var(--accent-green); color: #fff; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 6px; }
+    .score-badge { background: #fff; padding: 8px 14px; border-radius: 12px; font-weight: 700; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; gap: 6px; align-items: center; }
+
+    /* Intro Screen Layout */
+    .intro-screen { display: flex; flex-direction: column; gap: 20px; }
+    .subtitle-tag { color: var(--accent-green); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; }
+    .subtitle-tag::before { content: ""; display: inline-block; width: 20px; height: 2px; background: var(--accent-orange); }
+    
+    .main-title { font-size: 42px; font-weight: 900; line-height: 1.05; color: var(--text-main); }
+    .main-title span { color: var(--accent-green); }
+
+    .intro-desc { font-size: 15px; color: var(--text-muted); line-height: 1.5; }
+
+    .btn-primary { background: var(--text-main); color: #fff; border: none; padding: 18px 24px; border-radius: 14px; font-size: 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; cursor: pointer; box-shadow: 0 4px 12px rgba(19, 34, 56, 0.2); transition: transform 0.1s; }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-primary span { color: var(--accent-orange); font-size: 20px; }
+
+    .quick-meta { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+
+    /* Season Card Preview */
+    .season-card { background: var(--accent-green); color: #fff; border-radius: 20px; padding: 24px; position: relative; overflow: hidden; height: 160px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 20px rgba(0, 135, 90, 0.2); }
+    .season-card-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+    .season-card-bg-gfx { position: absolute; right: -20px; bottom: -40px; width: 160px; height: 160px; border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; }
+
+    /* Quiz Screen Layout with Dynamic Background Image */
+    .quiz-screen { display: none; flex-direction: column; gap: 16px; position: relative; border-radius: 20px; padding: 20px; background-size: cover; background-position: center; min-height: 500px; justify-content: space-between; }
+    .quiz-screen::before { content: ""; position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(15, 23, 42, 0.82); border-radius: 20px; z-index: 1; }
+    .quiz-content-wrapper { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 16px; height: 100%; justify-content: space-between; }
+
+    .quiz-top-bar { display: flex; justify-content: space-between; color: #fff; font-size: 14px; font-weight: 700; }
+    .question-box { background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 16px; font-size: 18px; font-weight: 700; color: var(--text-main); text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    
+    .options-grid { display: flex; flex-direction: column; gap: 10px; }
+    .option-btn { background: #fff; border: 2px solid var(--border-color); padding: 14px 16px; border-radius: 12px; font-size: 15px; font-weight: 600; color: var(--text-main); cursor: pointer; text-align: left; transition: all 0.2s; }
+    .option-btn:hover { background: #f1f5f9; border-color: var(--accent-green); }
+    .option-btn.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
+    .option-btn.wrong { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
+
+    /* Congratulations Modal Overlay */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 100; justify-content: center; align-items: center; padding: 20px; }
+    .modal-card { background: #fff; width: 100%; max-width: 360px; border-radius: 24px; padding: 30px; text-align: center; display: flex; flex-direction: column; gap: 16px; animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    @keyframes popUp { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    .modal-card h2 { font-size: 26px; color: var(--accent-green); font-weight: 900; }
+    .modal-card p { font-size: 15px; color: var(--text-muted); line-height: 1.4; }
+    .modal-btn { background: var(--accent-green); color: #fff; border: none; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; margin-top: 10px; }
+</style>
 </head>
 <body>
 
-    <div class="quiz-container" id="app">
-        <div class="intro-screen">
-            <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200" alt="Ball" class="intro-logo">
-            <h1>Ultimate Football Career</h1>
-            <p>50 progressive levels with unique challenges, audio effects, increasing difficulty, and ultimate rewards: the <strong>Trionda Ball</strong> & <strong>GOAT Messi Card</strong>!</p>
-            <button class="action-btn" onclick="initGameAudio()">Start Game & Enable Audio 🎵⚽</button>
+<div class="app-container">
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-badge"><span>⚽</span> KICKOFF</div>
+        <div class="score-badge">🏆 <span id="scoreDisplay">0</span> pts</div>
+    </div>
+
+    <!-- Intro Screen -->
+    <div id="introScreen" class="intro-screen">
+        <div class="subtitle-tag">Your Matchday Starts Here</div>
+        <h1 class="main-title">How deep does your <span>football</span> knowledge run?</h1>
+        <p class="intro-desc">Ten levels. Fifty questions. One chance to climb from the warm-up to the final whistle. Trust your instincts, back your answer, and see where you rank.</p>
+        
+        <button class="btn-primary" onclick="startQuiz()">
+            Kick off <span>➔</span>
+        </button>
+        <div class="quick-meta">⚡ Quick match · 50 questions · Increasing Difficulty</div>
+
+        <div class="season-card">
+            <div class="season-card-top">
+                <span>SEASON 01</span>
+                <span>00 / 50</span>
+            </div>
+            <div style="font-size: 18px; font-weight: 800;">OPEN DIVISION</div>
+            <div class="season-card-bg-gfx"></div>
         </div>
     </div>
 
-    <script>
-        let audioCtx = null;
+    <!-- Quiz Screen -->
+    <div id="quizScreen" class="quiz-screen">
+        <div class="quiz-content-wrapper">
+            <div class="quiz-top-bar">
+                <span id="levelIndicator">Level 1 / 10</span>
+                <span id="questionCounter">Question 1 / 5</span>
+            </div>
+            <div class="question-box" id="questionText">Loading question...</div>
+            <div class="options-grid" id="optionsContainer"></div>
+        </div>
+    </div>
+</div>
 
-        function initGameAudio() {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            playNote(523.25, 0.1);
-            setTimeout(() => playNote(659.25, 0.15), 100);
-            startQuiz();
+<!-- Congratulations Level Complete Modal -->
+<div class="modal-overlay" id="congratsModal">
+    <div class="modal-card">
+        <div style="font-size: 48px;">🎉</div>
+        <h2 id="modalTitle">Congratulations!</h2>
+        <p id="modalDesc">You successfully cleared Level 1! Entering the next level with higher difficulty...</p>
+        <button class="modal-btn" onclick="nextLevel()">Continue Match</button>
+    </div>
+</div>
+
+<script>
+    // 50 Questions split across 10 Levels (5 questions per level, increasing difficulty)
+    const allQuestions = [
+        // Level 1: Warm-up
+        { q: "How many players are on the field for one team in a standard football match?", options: ["9", "10", "11", "12"], answer: 2, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
+        { q: "What shape is a standard football?", options: ["Spherical", "Oval", "Cylindrical", "Cube"], answer: 0, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
+        { q: "How many halves are in a regular football match?", options: ["1", "2", "3", "4"], answer: 1, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
+        { q: "Which body part cannot touch the ball during regular play?", options: ["Head", "Chest", "Hands/Arms", "Feet"], answer: 2, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
+        { q: "What color card is shown to a player for a severe foul resulting in expulsion?", options: ["Yellow", "Green", "Red", "Blue"], answer: 2, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
+
+        // Level 2: Amateur League
+        { q: "Which country won the FIFA World Cup in 2018?", options: ["Brazil", "Germany", "France", "Argentina"], answer: 2, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
+        { q: "Who holds the record for the most goals in UEFA Champions League history?", options: ["Lionel Messi", "Cristiano Ronaldo", "Robert Lewandowski", "Karim Benzema"], answer: 1, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
+        { q: "Which club is known as 'The Red Devils'?", options: ["Liverpool", "Manchester United", "AC Milan", "Bayern Munich"], answer: 1, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
+        { q: "In which country is the famous stadium 'La Bombonera' located?", options: ["Spain", "Brazil", "Argentina", "Italy"], answer: 2, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
+        { q: "How long is a standard professional football match (excluding stoppage time)?", options: ["80 minutes", "90 minutes", "100 minutes", "120 minutes"], answer: 1, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
+
+        // Level 3: Professional Tier
+        { q: "Which player won the Ballon d'Or in 2023?", options: ["Erling Haaland", "Kylian Mbappé", "Lionel Messi", "Kevin De Bruyne"], answer: 2, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
+        { q: "Which national team is nicknamed 'The Seleção'?", options: ["Argentina", "Brazil", "Portugal", "France"], answer: 1, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
+        { q: "Which stadium is known as the 'Theatre of Dreams'?", options: ["Anfield", "Camp Nou", "Old Trafford", "Emirates Stadium"], answer: 2, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
+        { q: "Who is the all-time top goalscorer for the England men's national team?", options: ["Wayne Rooney", "Harry Kane", "Bobby Charlton", "Gary Lineker"], answer: 1, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
+        { q: "Which Italian club plays its home matches at the San Siro alongside AC Milan?", options: ["Inter Milan", "Juventus", "AS Roma", "Napoli"], answer: 0, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
+
+        // Level 4: Elite Division (Levels 16-20)
+        { q: "Which manager led Leicester City to their historic Premier League title in 2016?", options: ["Claudio Ranieri", "Brendan Rodgers", "Nigel Pearson", "Jose Mourinho"], answer: 0, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
+        { q: "What is the record number of goals scored by a single player in a calendar year?", options: ["75 goals", "85 goals", "91 goals", "98 goals"], answer: 2, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
+        { q: "Which country hosted the 2014 FIFA World Cup?", options: ["South Africa", "Brazil", "Russia", "Qatar"], answer: 1, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
+        { q: "Who scored the winning goal for Germany in the 2014 World Cup Final?", options: ["Toni Kroos", "Mario Götze", "Miroslav Klose", "Thomas Müller"], answer: 1, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
+        { q: "Which club won the UEFA Champions League in the 2019-20 season?", options: ["Liverpool", "Real Madrid", "Bayern Munich", "PSG"], answer: 2, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
+
+        // Levels 5-10 (Continuing up to 50 questions total with increasing depth)
+        { q: "Which player has appeared in the most FIFA World Cup matches?", options: ["Lothar Matthäus", "Lionel Messi", "Miroslav Klose", "Cristiano Ronaldo"], answer: 1, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
+        { q: "Which goalkeeper holds the record for most clean sheets in Premier League history?", options: ["Petr Čech", "David de Gea", "Peter Schmeichel", "Ederson"], answer: 0, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
+        { q: "Who won the Golden Boot at the 2022 FIFA World Cup?", options: ["Lionel Messi", "Kylian Mbappé", "Olivier Giroud", "Julián Álvarez"], answer: 1, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
+        { q: "Which team won the first-ever official FIFA World Cup in 1930?", options: ["Argentina", "Brazil", "Uruguay", "Italy"], answer: 2, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
+        { q: "What is the fastest goal ever scored in World Cup history?", options: ["6.8 seconds", "10.8 seconds", "13.6 seconds", "15.2 seconds"], answer: 1, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
+
+        // Level 6-10 questions padding out the full 50
+        { q: "Which European nation won three major international tournaments consecutively (2008-2012)?", options: ["Germany", "France", "Spain", "Italy"], answer: 2, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
+        { q: "Which stadium is famously known as the home of the German national team and Borussia Dortmund?", options: ["Allianz Arena", "Signal Iduna Park", "Olympiastadion", "Volksparkstadion"], answer: 1, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
+        { q: "Who is the youngest player to score in a FIFA World Cup final?", options: ["Pelé", "Kylian Mbappé", "Michael Owen", "Ronaldinho"], answer: 0, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
+        { q: "Which club completed the historic 'Sextuple' winning six trophies in one calendar year?", options: ["Real Madrid", "Barcelona (2009) & Bayern (2020)", "Manchester United", "AC Milan"], answer: 1, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
+        { q: "Who holds the record for the most assists in a single Premier League season?", options: ["Kevin De Bruyne", "Thierry Henry", "Mesut Özil", "Both De Bruyne & Henry"], answer: 3, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
+
+        // Filling out levels 7 through 10 to ensure a robust 50 questions total pool
+        { q: "Which African nation reached the FIFA World Cup semi-finals for the first time in 2022?", options: ["Nigeria", "Senegal", "Morocco", "Ghana"], answer: 2, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
+        { q: "What color was the original World Cup trophy, known as the Jules Rimet Trophy?", options: ["Gold", "Silver", "Bronze", "Platinum"], answer: 0, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
+        { q: "Which manager won the Champions League with two different clubs in the 2000s?", options: ["Sir Alex Ferguson", "Carlo Ancelotti & Jose Mourinho", "Pep Guardiola", "Arsène Wenger"], answer: 1, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
+        { q: "Which player scored the iconic 'Hand of God' goal in 1986?", options: ["Pelé", "Diego Maradona", "Zinedine Zidane", "Michel Platini"], answer: 1, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
+        { q: "Which stadium hosted the 2006 FIFA World Cup Final?", options: ["Wembley Stadium", "Stade de France", "Olympiastadion Berlin", "Maracanã"], answer: 2, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
+
+        { q: "Which club is nicknamed 'The Old Lady' (La Vecchia Signora) in Italian football?", options: ["Inter Milan", "Juventus", "Lazio", "Fiorentina"], answer: 1, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
+        { q: "Who is the all-time leading goalscorer in UEFA European Championship (Euros) history?", options: ["Cristiano Ronaldo", "Michel Platini", "Alan Shearer", "Antoine Griezmann"], answer: 0, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
+        { q: "Which country has won the most Copa América titles in history?", options: ["Brazil", "Uruguay & Argentina", "Chile", "Colombia"], answer: 1, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
+        { q: "Which player holds the record for most red cards in football history?", options: ["Sergio Ramos", "Gerardo Bedoya", "Pepe", "Roy Keane"], answer: 1, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
+        { q: "Which team won the 2021 Copa América hosted in Brazil?", options: ["Brazil", "Argentina", "Colombia", "Peru"], answer: 1, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
+
+        { q: "Which player scored five goals in just nine minutes in a Bundesliga match for Bayern Munich?", options: ["Robert Lewandowski", "Thomas Müller", "Arjen Robben", "Mario Gómez"], answer: 0, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
+        { q: "Which Premier League team went an entire 38-game season unbeaten in 2003-04?", options: ["Manchester United", "Chelsea", "Arsenal", "Manchester City"], answer: 2, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
+        { q: "Who won the FIFA Puskás Award for the best goal of the year in 2022?", options: ["Richarlison", "Dimitri Payet", "Mohamed Salah", "Son Heung-min"], answer: 0, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
+        { q: "Which country won the FIFA Women's World Cup in 2023?", options: ["United States", "England", "Spain", "Sweden"], answer: 2, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
+        { q: "What is the maximum number of substitutes allowed in a standard modern professional match?", options: ["3", "4", "5", "7"], answer: 2, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
+
+        { q: "Which footballer is famously known as 'El Fenómeno'?", options: ["Cristiano Ronaldo", "Ronaldinho", "Ronaldo Nazário", "Kaká"], answer: 2, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
+        { q: "Which stadium is the home ground of FC Barcelona?", options: ["Santiago Bernabéu", "Spotify Camp Nou", "Wanda Metropolitano", "Mestalla"], answer: 1, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
+        { q: "Who is the current manager credited with inventing 'Tiki-Taka' domination style?", options: ["Pep Guardiola", "Vicente del Bosque", "Luis Aragonés", "Johan Cruyff"], answer: 3, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
+        { q: "Which player has won the most UEFA Champions League trophies in history?", options: ["Lionel Messi", "Cristiano Ronaldo", "Paco Gento", "Toni Kroos"], answer: 2, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
+        { q: "What is the ultimate prize in club football in South America?", options: ["Copa Libertadores", "Recopa Sudamericana", "Copa Sudamericana", "Campeonato Brasileiro"], answer: 0, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function startQuiz() {
+        document.getElementById('introScreen').style.display = 'none';
+        document.getElementById('quizScreen').style.display = 'flex';
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        if (currentQuestionIndex >= allQuestions.length) {
+            alert("Legendary Career Complete! You finished all 50 questions!");
+            location.reload();
+            return;
         }
 
-        function playNote(freq, duration) {
-            if (!audioCtx) return;
-            try {
-                let osc = audioCtx.createOscillator();
-                let gain = audioCtx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.value = freq;
-                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            } catch(e) {}
+        const qData = allQuestions[currentQuestionIndex];
+        const currentLevel = Math.floor(currentQuestionIndex / 5) + 1;
+        const currentQInLevel = (currentQuestionIndex % 5) + 1;
+
+        document.getElementById('levelIndicator').innerText = `Level ${currentLevel} / 10`;
+        document.getElementById('questionCounter').innerText = `Question ${currentQInLevel} / 5`;
+        document.getElementById('questionText').innerText = qData.q;
+        document.getElementById('quizScreen').style.backgroundImage = `url('${qData.bg}')`;
+
+        const optionsContainer = document.getElementById('optionsContainer');
+        optionsContainer.innerHTML = '';
+
+        qData.options.forEach((opt, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => selectAnswer(index, btn, qData.answer);
+            optionsContainer.appendChild(btn);
+        });
+    }
+
+    function selectAnswer(selectedIndex, btnElement, correctIndex) {
+        const optionButtons = document.querySelectorAll('.option-btn');
+        
+        // Disable all buttons to prevent double-clicking
+        optionButtons.forEach(b => b.style.pointerEvents = 'none');
+
+        if (selectedIndex === correctIndex) {
+            btnElement.classList.add('correct');
+            score += 20;
+            document.getElementById('scoreDisplay').innerText = score;
+        } else {
+            btnElement.classList.add('wrong');
+            optionButtons[correctIndex].classList.add('correct');
         }
 
-        const questionBank = [
-            { q: "Which country won the first-ever FIFA World Cup in 1930?", opts: ["Brazil", "Uruguay", "Argentina", "Italy"], ans: 1 },
-            { q: "Who holds the record for most goals in a single calendar year?", opts: ["Lionel Messi", "Cristiano Ronaldo", "Pele", "Gerd Muller"], ans: 0 },
-            { q: "Which club won 3 consecutive UEFA Champions Leagues from 2016 to 2018?", opts: ["Barcelona", "Bayern Munich", "Real Madrid", "Liverpool"], ans: 2 },
-            { q: "Who is the all-time top goalscorer in the UEFA Champions League?", opts: ["Robert Lewandowski", "Lionel Messi", "Karim Benzema", "Cristiano Ronaldo"], ans: 3 },
-            { q: "Which nation is known as 'De Rode Duivels' (The Red Devils)?", opts: ["Belgium", "England", "South Korea", "Denmark"], ans: 0 },
-            { q: "Which player has won the most Ballon d'Or awards in history?", opts: ["Cristiano Ronaldo", "Lionel Messi", "Johan Cruyff", "Michel Platini"], ans: 1 },
-            { q: "Which stadium is known as the 'Theatre of Dreams'?", opts: ["Anfield", "Camp Nou", "Old Trafford", "Wembley"], ans: 2 },
-            { q: "Which country won the 2022 FIFA World Cup in Qatar?", opts: ["France", "Brazil", "Argentina", "Germany"], ans: 2 },
-            { q: "Who scored the famous 'Hand of God' goal in the 1986 World Cup?", opts: ["Pelé", "Diego Maradona", "Zinedine Zidane", "Ronaldo Nazário"], ans: 1 },
-            { q: "Which team won the English Premier League Invincibles season without losing a match?", opts: ["Manchester United", "Chelsea", "Manchester City", "Arsenal"], ans: 3 }
-        ];
-
-        const levelsData = [];
-        const difficulties = ["Warm-up Tier", "Club Tier", "National Tier", "Elite Tier", "Legendary Tier"];
-
-        for (let l = 1; l <= 50; l++) {
-            let tierIndex = Math.floor((l - 1) / 10);
-            let levelQuestions = [];
-            for (let q = 0; q < 5; q++) {
-                let bankItem = questionBank[(l * 3 + q) % questionBank.length];
-                levelQuestions.push({
-                    question: `Lvl ${l} (Q${q+1}): ${bankItem.q}`,
-                    options: bankItem.opts,
-                    answer: bankItem.ans
-                });
+        setTimeout(() => {
+            currentQuestionIndex++;
+            // Check if level completed (every 5 questions)
+            if (currentQuestionIndex % 5 === 0 && currentQuestionIndex < allQuestions.length) {
+                const completedLevel = currentQuestionIndex / 5;
+                document.getElementById('modalTitle').innerText = `Level ${completedLevel} Cleared!`;
+                document.getElementById('modalDesc').innerText = `Congratulations! You mastered Level ${completedLevel}. Advancing to Level ${completedLevel + 1} with harder challenges...`;
+                document.getElementById('congratsModal').style.display = 'flex';
+            } else {
+                loadQuestion();
             }
-            levelsData.push({
-                level: l,
-                tier: difficulties[tierIndex],
-                questions: levelQuestions
-            });
-        }
+        }, 1200);
+    }
 
-        let currentLevelIndex = 0;
-        let currentQIndex = 0;
-        let score = 0;
+    function nextLevel() {
+        document.getElementById('congratsModal').style.display = 'none';
+        loadQuestion();
+    }
+</script>
 
-        function startQuiz() {
-            currentLevelIndex = 0;
-            currentQIndex = 0;
-            score = 0;
-            loadQuestion();
-        }
-
-        function loadQuestion() {
-            const levelObj = levelsData[currentLevelIndex];
-            if (currentQIndex >= levelObj.questions.length) {
-                currentLevelIndex++;
-                currentQIndex = 0;
-                if (currentLevelIndex >= levelsData.length) {
-                    playVictoryFanfare();
-                    showVictoryScreen();
-                    return;
-                }
-            }
-
-            const activeLevel = levelsData[currentLevelIndex];
-            const q = activeLevel.questions[currentQIndex];
-            const app = document.getElementById('app');
-            
-            app.innerHTML = `
-                <div class="header">
-                    <div class="level-badge">Level ${activeLevel.level} / 50</div>
-                    <div class="stats">Tier: <span>${activeLevel.tier}</span> | Score: <span>${score}</span></div>
-                </div>
-                <div class="question-box">
-                    <div class="question-meta">Question ${currentQIndex + 1} of 5</div>
-                    <h2>${q.question}</h2>
-                </div>
-                <div class="options-grid">
-                    ${q.options.map((opt, index) => `
-                        <button class="option-btn" onclick="handleAnswer(${index})">${opt}</button>
-                    `).join('')}
-                </div>
-                <div class="footer-controls">
-                    <button class="control-btn" onclick="resetQuiz()">Reset Progress</button>
-                    <button class="control-btn quit" onclick="quitQuiz()">Quit to Menu</button>
-                </div>
-            `;
-        }
-
-        function handleAnswer(selectedIndex) {
-            playNote(400, 0.08);
-            const activeLevel = levelsData[currentLevelIndex];
-            const q = activeLevel.questions[currentQIndex];
-            
-            if (selectedIndex === q.answer) {
-                score += 10;
-            }
-            currentQIndex++;
-            loadQuestion();
-        }
-
-        function resetQuiz() {
-            if(confirm("Reset progress back to Level 1?")) {
-                startQuiz();
-            }
-        }
-
-        function quitQuiz() {
-            if(confirm("Return to main menu?")) {
-                location.reload();
-            }
-        }
-
-        function playVictoryFanfare() {
-            setTimeout(() => playNote(523.25, 0.2), 0);
-            setTimeout(() => playNote(659.25, 0.2), 200);
-            setTimeout(() => playNote(783.99, 0.3), 400);
-            setTimeout(() => playNote(1046.50, 0.6), 600);
-        }
-
-        function showVictoryScreen() {
-            const app = document.getElementById('app');
-            app.innerHTML = `
-                <div class="intro-screen">
-                    <h1>GLORY! 50 LEVELS CONQUERED! 🏆</h1>
-                    <p>You completed all 50 levels with a final score of <strong>${score} points</strong> and unlocked ultimate status!</p>
-                    
-                    <div class="rewards-container">
-                        <div class="reward-card">
-                            <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=200" alt="Trionda Ball">
-                            <h3>Trionda Ball</h3>
-                            <p>Elite match ball.</p>
-                        </div>
-                        <div class="reward-card">
-                            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=200" alt="GOAT Messi Card">
-                            <h3>GOAT Messi</h3>
-                            <p>Exclusive card.</p>
-                        </div>
-                    </div>
-
-                    <button class="action-btn" onclick="startQuiz()" style="margin-top: 15px;">Play Career Again 🔄</button>
-                </div>
-            `;
-        }
-    </script>
 </body>
 </html>
-                                  
+
+        
