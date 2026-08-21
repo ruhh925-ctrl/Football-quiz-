@@ -1,75 +1,87 @@
-   <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultimate Football Career - 50 Levels</title>
+<title>Ultimate Football Career - 50 GOAT Jerseys</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=512">
 <style>
     :root {
-        --bg-main: #fbf9f5;
-        --card-bg: #ffffff;
-        --text-main: #132238;
-        --text-muted: #52606d;
-        --accent-green: #00875a;
-        --accent-orange: #ff5630;
-        --border-color: #e2e8f0;
+        --bg-main: #070b19;
+        --card-bg: rgba(18, 28, 51, 0.92);
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --accent-green: #00d26a;
+        --accent-orange: #ff5722;
+        --accent-gold: #ffb703;
+        --border-color: rgba(255, 255, 255, 0.1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-    body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+    body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 15px; background-image: radial-gradient(circle at top, #1a2c54 0%, #070b19 100%); }
 
-    .app-container { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 20px; }
+    .app-container { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 16px; }
 
     /* Top Navigation Header */
-    .header { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; }
-    .logo-badge { display: flex; align-items: center; gap: 8px; background: #fff; padding: 8px 14px; border-radius: 12px; font-weight: 800; font-size: 14px; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-    .logo-badge span { background: var(--accent-green); color: #fff; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 6px; }
-    .score-badge { background: #fff; padding: 8px 14px; border-radius: 12px; font-weight: 700; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: flex; gap: 6px; align-items: center; }
+    .header { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+    .logo-badge { display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); padding: 8px 14px; border-radius: 12px; font-weight: 800; font-size: 14px; border: 1px solid var(--border-color); color: #fff; }
+    .logo-badge span { background: var(--accent-green); color: #000; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: 900; }
+    
+    .header-right { display: flex; gap: 8px; align-items: center; }
+    .audio-btn { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); padding: 8px 12px; border-radius: 12px; font-weight: 700; font-size: 13px; border: 1px solid var(--border-color); color: #fff; cursor: pointer; display: flex; gap: 6px; align-items: center; }
 
     /* Intro Screen Layout */
-    .intro-screen { display: flex; flex-direction: column; gap: 20px; }
+    .intro-screen { display: flex; flex-direction: column; gap: 18px; background: var(--card-bg); border: 1px solid var(--border-color); backdrop-filter: blur(12px); padding: 24px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
     .subtitle-tag { color: var(--accent-green); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; }
-    .subtitle-tag::before { content: ""; display: inline-block; width: 20px; height: 2px; background: var(--accent-orange); }
+    .subtitle-tag::before { content: ""; display: inline-block; width: 16px; height: 2px; background: var(--accent-orange); }
     
-    .main-title { font-size: 42px; font-weight: 900; line-height: 1.05; color: var(--text-main); }
-    .main-title span { color: var(--accent-green); }
+    .main-title { font-size: 34px; font-weight: 900; line-height: 1.1; color: #fff; }
+    .main-title span { background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-    .intro-desc { font-size: 15px; color: var(--text-muted); line-height: 1.5; }
+    .intro-desc { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
 
-    .btn-primary { background: var(--text-main); color: #fff; border: none; padding: 18px 24px; border-radius: 14px; font-size: 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; cursor: pointer; box-shadow: 0 4px 12px rgba(19, 34, 56, 0.2); transition: transform 0.1s; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent-green), #00a854); color: #070b19; border: none; padding: 16px 20px; border-radius: 14px; font-size: 16px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; cursor: pointer; box-shadow: 0 8px 20px rgba(0, 210, 106, 0.3); transition: transform 0.1s; }
     .btn-primary:active { transform: scale(0.98); }
-    .btn-primary span { color: var(--accent-orange); font-size: 20px; }
+    .btn-primary span { font-size: 20px; }
 
-    .quick-meta { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+    .quick-meta { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; justify-content: center; text-align: center; }
 
-    /* Season Card Preview */
-    .season-card { background: var(--accent-green); color: #fff; border-radius: 20px; padding: 24px; position: relative; overflow: hidden; height: 160px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 20px rgba(0, 135, 90, 0.2); }
-    .season-card-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
-    .season-card-bg-gfx { position: absolute; right: -20px; bottom: -40px; width: 160px; height: 160px; border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; }
+    /* Season Preview Card */
+    .season-card { background: linear-gradient(135deg, #1f1c2c, #928dab); color: #fff; border-radius: 18px; padding: 20px; position: relative; overflow: hidden; height: 140px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(255,255,255,0.15); }
+    .season-card-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--accent-gold); }
+    .season-card-bg-gfx { position: absolute; right: -20px; bottom: -30px; width: 130px; height: 130px; border: 2px solid rgba(255,255,255,0.1); border-radius: 50%; }
 
-    /* Quiz Screen Layout with Dynamic Background Image */
-    .quiz-screen { display: none; flex-direction: column; gap: 16px; position: relative; border-radius: 20px; padding: 20px; background-size: cover; background-position: center; min-height: 500px; justify-content: space-between; }
-    .quiz-screen::before { content: ""; position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(15, 23, 42, 0.82); border-radius: 20px; z-index: 1; }
-    .quiz-content-wrapper { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 16px; height: 100%; justify-content: space-between; }
+    /* Quiz Screen Layout */
+    .quiz-screen { display: none; flex-direction: column; gap: 14px; position: relative; border-radius: 24px; padding: 20px; background-size: cover; background-position: center; min-height: 560px; justify-content: space-between; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+    .quiz-screen::before { content: ""; position: absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(to bottom, rgba(7, 11, 25, 0.88), rgba(7, 11, 25, 0.96)); z-index: 1; }
+    .quiz-content-wrapper { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 14px; height: 100%; justify-content: space-between; }
 
-    .quiz-top-bar { display: flex; justify-content: space-between; color: #fff; font-size: 14px; font-weight: 700; }
-    .question-box { background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 16px; font-size: 18px; font-weight: 700; color: var(--text-main); text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .quiz-top-bar { display: flex; justify-content: space-between; color: var(--accent-gold); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
     
-    .options-grid { display: flex; flex-direction: column; gap: 10px; }
-    .option-btn { background: #fff; border: 2px solid var(--border-color); padding: 14px 16px; border-radius: 12px; font-size: 15px; font-weight: 600; color: var(--text-main); cursor: pointer; text-align: left; transition: all 0.2s; }
-    .option-btn:hover { background: #f1f5f9; border-color: var(--accent-green); }
-    .option-btn.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
-    .option-btn.wrong { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
+    /* Visual Frame for Player/Trophy or Stadium Image */
+    .media-card-frame { width: 100%; height: 130px; border-radius: 14px; overflow: hidden; position: relative; border: 2px solid rgba(255,255,255,0.15); box-shadow: 0 8px 16px rgba(0,0,0,0.3); background: #121c33; }
+    .media-card-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .media-card-badge { position: absolute; bottom: 8px; left: 8px; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 6px; font-weight: 700; border: 1px solid rgba(255,255,255,0.1); }
 
-    /* Congratulations Modal Overlay */
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 100; justify-content: center; align-items: center; padding: 20px; }
-    .modal-card { background: #fff; width: 100%; max-width: 360px; border-radius: 24px; padding: 30px; text-align: center; display: flex; flex-direction: column; gap: 16px; animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .question-box { background: rgba(18, 28, 51, 0.95); backdrop-filter: blur(10px); padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 700; color: #fff; text-align: center; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.2); line-height: 1.4; }
+    
+    .options-grid { display: flex; flex-direction: column; gap: 8px; }
+    .option-btn { background: rgba(255, 255, 255, 0.06); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.12); padding: 13px 15px; border-radius: 12px; font-size: 14px; font-weight: 600; color: #fff; cursor: pointer; text-align: left; transition: all 0.2s; }
+    .option-btn:hover { background: rgba(255, 255, 255, 0.12); border-color: var(--accent-green); }
+    .option-btn.correct { background: rgba(0, 210, 106, 0.25) !important; border-color: var(--accent-green) !important; color: #a3e635 !important; }
+    .option-btn.wrong { background: rgba(239, 68, 68, 0.25) !important; border-color: #ef4444 !important; color: #fca5a5 !important; }
+
+    /* Level / Jersey Completion Modal Overlay */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(3, 7, 18, 0.9); backdrop-filter: blur(10px); z-index: 100; justify-content: center; align-items: center; padding: 20px; }
+    .modal-card { background: #121c33; border: 1px solid var(--accent-gold); width: 100%; max-width: 380px; border-radius: 24px; padding: 28px; text-align: center; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 25px 50px rgba(0,0,0,0.7); animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     @keyframes popUp { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-    .modal-card h2 { font-size: 26px; color: var(--accent-green); font-weight: 900; }
-    .modal-card p { font-size: 15px; color: var(--text-muted); line-height: 1.4; }
-    .modal-btn { background: var(--accent-green); color: #fff; border: none; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; margin-top: 10px; }
+    .modal-card h2 { font-size: 24px; color: var(--accent-gold); font-weight: 900; }
+    .jersey-display { background: rgba(255, 183, 3, 0.1); border: 2px dashed var(--accent-gold); padding: 16px; border-radius: 16px; display: flex; flex-direction: column; gap: 4px; }
+    .jersey-num { font-size: 28px; font-weight: 900; color: var(--accent-gold); }
+    .jersey-name { font-size: 16px; font-weight: 800; color: #fff; }
+    .modal-card p { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+    .modal-btn { background: var(--accent-gold); color: #070b19; border: none; padding: 14px; border-radius: 12px; font-weight: 800; font-size: 15px; cursor: pointer; margin-top: 4px; box-shadow: 0 4px 12px rgba(255,183,3,0.3); }
 </style>
 </head>
 <body>
@@ -77,27 +89,29 @@
 <div class="app-container">
     <!-- Header -->
     <div class="header">
-        <div class="logo-badge"><span>⚽</span> KICKOFF</div>
-        <div class="score-badge">🏆 <span id="scoreDisplay">0</span> pts</div>
+        <div class="logo-badge"><span>⚽</span> GOAT JERSEYS</div>
+        <div class="header-right">
+            <button class="audio-btn" id="audioToggleBtn" onclick="toggleAudio()">🔊 Sound</button>
+        </div>
     </div>
 
     <!-- Intro Screen -->
     <div id="introScreen" class="intro-screen">
-        <div class="subtitle-tag">Your Matchday Starts Here</div>
-        <h1 class="main-title">How deep does your <span>football</span> knowledge run?</h1>
-        <p class="intro-desc">Ten levels. Fifty questions. One chance to climb from the warm-up to the final whistle. Trust your instincts, back your answer, and see where you rank.</p>
+        <div class="subtitle-tag">50 Levels Career & Jersey Hunt</div>
+        <h1 class="main-title">Collect All <span>50 GOAT Jerseys</span>!</h1>
+        <p class="intro-desc">Conquer 50 distinct levels. Complete a level to unlock a legendary player jersey in reverse order (#50 down to #1). <b>Warning:</b> If you answer incorrectly, you will restart from question 1 of that current level!</p>
         
         <button class="btn-primary" onclick="startQuiz()">
-            Kick off <span>➔</span>
+            Start Career Journey <span>➔</span>
         </button>
-        <div class="quick-meta">⚡ Quick match · 50 questions · Increasing Difficulty</div>
+        <div class="quick-meta">⚠️ Wrong Answer Resets Level · 👕 50 All-Time Jerseys to Unlock</div>
 
         <div class="season-card">
             <div class="season-card-top">
-                <span>SEASON 01</span>
-                <span>00 / 50</span>
+                <span>COLLECTION STATUS</span>
+                <span>0 / 50 UNLOCKED</span>
             </div>
-            <div style="font-size: 18px; font-weight: 800;">OPEN DIVISION</div>
+            <div style="font-size: 18px; font-weight: 900;">LEGENDARY FOOTBALLERS</div>
             <div class="season-card-bg-gfx"></div>
         </div>
     </div>
@@ -106,8 +120,12 @@
     <div id="quizScreen" class="quiz-screen">
         <div class="quiz-content-wrapper">
             <div class="quiz-top-bar">
-                <span id="levelIndicator">Level 1 / 10</span>
-                <span id="questionCounter">Question 1 / 5</span>
+                <span id="levelIndicator">Level 1 / 50</span>
+                <span id="questionStepIndicator">Q 1/3</span>
+            </div>
+            <div class="media-card-frame">
+                <img id="questionImage" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" alt="Football Visual">
+                <div class="media-card-badge" id="imageCaption">Match Arena</div>
             </div>
             <div class="question-box" id="questionText">Loading question...</div>
             <div class="options-grid" id="optionsContainer"></div>
@@ -115,111 +133,122 @@
     </div>
 </div>
 
-<!-- Congratulations Level Complete Modal -->
+<!-- Level Completion & Jersey Reward Modal -->
 <div class="modal-overlay" id="congratsModal">
     <div class="modal-card">
-        <div style="font-size: 48px;">🎉</div>
-        <h2 id="modalTitle">Congratulations!</h2>
-        <p id="modalDesc">You successfully cleared Level 1! Entering the next level with higher difficulty...</p>
-        <button class="modal-btn" onclick="nextLevel()">Continue Match</button>
+        <div style="font-size: 36px;">👕🏆</div>
+        <h2 id="modalTitle">Level Cleared!</h2>
+        <div class="jersey-display">
+            <div class="jersey-num" id="modalJerseyNum">#50 Jersey</div>
+            <div class="jersey-name" id="modalJerseyName">Player Name</div>
+        </div>
+        <p id="modalDesc">Massive congratulations! You conquered this level and claimed this legendary player jersey for your collection.</p>
+        <button class="modal-btn" onclick="nextLevel()">Continue Journey</button>
     </div>
 </div>
 
 <script>
-    // 50 Questions split across 10 Levels (5 questions per level, increasing difficulty)
-    const allQuestions = [
-        // Level 1: Warm-up
-        { q: "How many players are on the field for one team in a standard football match?", options: ["9", "10", "11", "12"], answer: 2, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
-        { q: "What shape is a standard football?", options: ["Spherical", "Oval", "Cylindrical", "Cube"], answer: 0, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
-        { q: "How many halves are in a regular football match?", options: ["1", "2", "3", "4"], answer: 1, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
-        { q: "Which body part cannot touch the ball during regular play?", options: ["Head", "Chest", "Hands/Arms", "Feet"], answer: 2, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
-        { q: "What color card is shown to a player for a severe foul resulting in expulsion?", options: ["Yellow", "Green", "Red", "Blue"], answer: 2, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
+    // Audio synthesizer context
+    let audioCtx = null;
+    let soundEnabled = true;
 
-        // Level 2: Amateur League
-        { q: "Which country won the FIFA World Cup in 2018?", options: ["Brazil", "Germany", "France", "Argentina"], answer: 2, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
-        { q: "Who holds the record for the most goals in UEFA Champions League history?", options: ["Lionel Messi", "Cristiano Ronaldo", "Robert Lewandowski", "Karim Benzema"], answer: 1, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
-        { q: "Which club is known as 'The Red Devils'?", options: ["Liverpool", "Manchester United", "AC Milan", "Bayern Munich"], answer: 1, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
-        { q: "In which country is the famous stadium 'La Bombonera' located?", options: ["Spain", "Brazil", "Argentina", "Italy"], answer: 2, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
-        { q: "How long is a standard professional football match (excluding stoppage time)?", options: ["80 minutes", "90 minutes", "100 minutes", "120 minutes"], answer: 1, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
+    function initAudio() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+    }
 
-        // Level 3: Professional Tier
-        { q: "Which player won the Ballon d'Or in 2023?", options: ["Erling Haaland", "Kylian Mbappé", "Lionel Messi", "Kevin De Bruyne"], answer: 2, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
-        { q: "Which national team is nicknamed 'The Seleção'?", options: ["Argentina", "Brazil", "Portugal", "France"], answer: 1, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
-        { q: "Which stadium is known as the 'Theatre of Dreams'?", options: ["Anfield", "Camp Nou", "Old Trafford", "Emirates Stadium"], answer: 2, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
-        { q: "Who is the all-time top goalscorer for the England men's national team?", options: ["Wayne Rooney", "Harry Kane", "Bobby Charlton", "Gary Lineker"], answer: 1, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
-        { q: "Which Italian club plays its home matches at the San Siro alongside AC Milan?", options: ["Inter Milan", "Juventus", "AS Roma", "Napoli"], answer: 0, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
+    function playSound(type) {
+        if (!soundEnabled) return;
+        initAudio();
+        if (!audioCtx) return;
 
-        // Level 4: Elite Division (Levels 16-20)
-        { q: "Which manager led Leicester City to their historic Premier League title in 2016?", options: ["Claudio Ranieri", "Brendan Rodgers", "Nigel Pearson", "Jose Mourinho"], answer: 0, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
-        { q: "What is the record number of goals scored by a single player in a calendar year?", options: ["75 goals", "85 goals", "91 goals", "98 goals"], answer: 2, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
-        { q: "Which country hosted the 2014 FIFA World Cup?", options: ["South Africa", "Brazil", "Russia", "Qatar"], answer: 1, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
-        { q: "Who scored the winning goal for Germany in the 2014 World Cup Final?", options: ["Toni Kroos", "Mario Götze", "Miroslav Klose", "Thomas Müller"], answer: 1, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
-        { q: "Which club won the UEFA Champions League in the 2019-20 season?", options: ["Liverpool", "Real Madrid", "Bayern Munich", "PSG"], answer: 2, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
 
-        // Levels 5-10 (Continuing up to 50 questions total with increasing depth)
-        { q: "Which player has appeared in the most FIFA World Cup matches?", options: ["Lothar Matthäus", "Lionel Messi", "Miroslav Klose", "Cristiano Ronaldo"], answer: 1, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
-        { q: "Which goalkeeper holds the record for most clean sheets in Premier League history?", options: ["Petr Čech", "David de Gea", "Peter Schmeichel", "Ederson"], answer: 0, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
-        { q: "Who won the Golden Boot at the 2022 FIFA World Cup?", options: ["Lionel Messi", "Kylian Mbappé", "Olivier Giroud", "Julián Álvarez"], answer: 1, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
-        { q: "Which team won the first-ever official FIFA World Cup in 1930?", options: ["Argentina", "Brazil", "Uruguay", "Italy"], answer: 2, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
-        { q: "What is the fastest goal ever scored in World Cup history?", options: ["6.8 seconds", "10.8 seconds", "13.6 seconds", "15.2 seconds"], answer: 1, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
+        if (type === 'correct') {
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15);
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.3);
+        } else if (type === 'wrong') {
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+            osc.frequency.setValueAtTime(100, audioCtx.currentTime + 0.15);
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.3);
+        } else if (type === 'congrats') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+            osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1);
+            osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.5);
+        }
+    }
 
-        // Level 6-10 questions padding out the full 50
-        { q: "Which European nation won three major international tournaments consecutively (2008-2012)?", options: ["Germany", "France", "Spain", "Italy"], answer: 2, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
-        { q: "Which stadium is famously known as the home of the German national team and Borussia Dortmund?", options: ["Allianz Arena", "Signal Iduna Park", "Olympiastadion", "Volksparkstadion"], answer: 1, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
-        { q: "Who is the youngest player to score in a FIFA World Cup final?", options: ["Pelé", "Kylian Mbappé", "Michael Owen", "Ronaldinho"], answer: 0, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
-        { q: "Which club completed the historic 'Sextuple' winning six trophies in one calendar year?", options: ["Real Madrid", "Barcelona (2009) & Bayern (2020)", "Manchester United", "AC Milan"], answer: 1, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
-        { q: "Who holds the record for the most assists in a single Premier League season?", options: ["Kevin De Bruyne", "Thierry Henry", "Mesut Özil", "Both De Bruyne & Henry"], answer: 3, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
+    function toggleAudio() {
+        soundEnabled = !soundEnabled;
+        document.getElementById('audioToggleBtn').innerText = soundEnabled ? "🔊 Sound" : "🔇 Muted";
+    }
 
-        // Filling out levels 7 through 10 to ensure a robust 50 questions total pool
-        { q: "Which African nation reached the FIFA World Cup semi-finals for the first time in 2022?", options: ["Nigeria", "Senegal", "Morocco", "Ghana"], answer: 2, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
-        { q: "What color was the original World Cup trophy, known as the Jules Rimet Trophy?", options: ["Gold", "Silver", "Bronze", "Platinum"], answer: 0, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
-        { q: "Which manager won the Champions League with two different clubs in the 2000s?", options: ["Sir Alex Ferguson", "Carlo Ancelotti & Jose Mourinho", "Pep Guardiola", "Arsène Wenger"], answer: 1, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
-        { q: "Which player scored the iconic 'Hand of God' goal in 1986?", options: ["Pelé", "Diego Maradona", "Zinedine Zidane", "Michel Platini"], answer: 1, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
-        { q: "Which stadium hosted the 2006 FIFA World Cup Final?", options: ["Wembley Stadium", "Stade de France", "Olympiastadion Berlin", "Maracanã"], answer: 2, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
-
-        { q: "Which club is nicknamed 'The Old Lady' (La Vecchia Signora) in Italian football?", options: ["Inter Milan", "Juventus", "Lazio", "Fiorentina"], answer: 1, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
-        { q: "Who is the all-time leading goalscorer in UEFA European Championship (Euros) history?", options: ["Cristiano Ronaldo", "Michel Platini", "Alan Shearer", "Antoine Griezmann"], answer: 0, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
-        { q: "Which country has won the most Copa América titles in history?", options: ["Brazil", "Uruguay & Argentina", "Chile", "Colombia"], answer: 1, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
-        { q: "Which player holds the record for most red cards in football history?", options: ["Sergio Ramos", "Gerardo Bedoya", "Pepe", "Roy Keane"], answer: 1, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
-        { q: "Which team won the 2021 Copa América hosted in Brazil?", options: ["Brazil", "Argentina", "Colombia", "Peru"], answer: 1, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
-
-        { q: "Which player scored five goals in just nine minutes in a Bundesliga match for Bayern Munich?", options: ["Robert Lewandowski", "Thomas Müller", "Arjen Robben", "Mario Gómez"], answer: 0, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
-        { q: "Which Premier League team went an entire 38-game season unbeaten in 2003-04?", options: ["Manchester United", "Chelsea", "Arsenal", "Manchester City"], answer: 2, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
-        { q: "Who won the FIFA Puskás Award for the best goal of the year in 2022?", options: ["Richarlison", "Dimitri Payet", "Mohamed Salah", "Son Heung-min"], answer: 0, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
-        { q: "Which country won the FIFA Women's World Cup in 2023?", options: ["United States", "England", "Spain", "Sweden"], answer: 2, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" },
-        { q: "What is the maximum number of substitutes allowed in a standard modern professional match?", options: ["3", "4", "5", "7"], answer: 2, bg: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800" },
-
-        { q: "Which footballer is famously known as 'El Fenómeno'?", options: ["Cristiano Ronaldo", "Ronaldinho", "Ronaldo Nazário", "Kaká"], answer: 2, bg: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800" },
-        { q: "Which stadium is the home ground of FC Barcelona?", options: ["Santiago Bernabéu", "Spotify Camp Nou", "Wanda Metropolitano", "Mestalla"], answer: 1, bg: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800" },
-        { q: "Who is the current manager credited with inventing 'Tiki-Taka' domination style?", options: ["Pep Guardiola", "Vicente del Bosque", "Luis Aragonés", "Johan Cruyff"], answer: 3, bg: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" },
-        { q: "Which player has won the most UEFA Champions League trophies in history?", options: ["Lionel Messi", "Cristiano Ronaldo", "Paco Gento", "Toni Kroos"], answer: 2, bg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" },
-        { q: "What is the ultimate prize in club football in South America?", options: ["Copa Libertadores", "Recopa Sudamericana", "Copa Sudamericana", "Campeonato Brasileiro"], answer: 0, bg: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800" }
+    // 50 Greatest Players of All Time Jerseys (#50 down to #1) mapped precisely to Levels 1 to 50
+    const goatJerseys = [
+        { num: 50, name: "Hristo Stoichkov" }, { num: 49, name: "Gabriel Batistuta" }, { num: 48, name: "Michael Laudrup" }, { num: 47, name: "Peter Schmeichel" }, { num: 46, name: "Karl-Heinz Rummenigge" },
+        { num: 45, name: "Cafu" }, { num: 44, name: "Dani Alves" }, { num: 43, name: "Sergio Ramos" }, { num: 42, name: "Gianluigi Buffon" }, { num: 41, name: "Manuel Neuer" },
+        { num: 40, name: "Kaká" }, { num: 39, name: "Luka Modrić" }, { num: 38, name: "Kevin De Bruyne" }, { num: 37, name: "Wayne Rooney" }, { num: 36, name: "Sergio Agüero" },
+        { num: 35, name: "Thierry Henry" }, { num: 34, name: "Dennis Bergkamp" }, { num: 33, name: "Ruud Gullit" }, { num: 32, name: "Marco van Basten" }, { num: 31, name: "Roberto Baggio" },
+        { num: 30, name: "Paolo Maldini" }, { num: 29, name: "Franco Baresi" }, { num: 28, name: "Bobby Moore" }, { num: 27, name: "Franz Beckenbauer" }, { num: 26, name: "Gerd Müller" },
+        { num: 25, name: "Eusébio" }, { num: 24, name: "George Best" }, { num: 23, name: "Bobby Charlton" }, { num: 22, name: "Lev Yashin" }, { num: 21, name: "Zico" },
+        { num: 20, name: "Sócrates" }, { num: 19, name: "Romário" }, { num: 18, name: "Rivaldo" }, { num: 17, name: "Ronaldinho" }, { num: 16, name: "Zinedine Zidane" },
+        { num: 15, name: "Michel Platini" }, { num: 14, name: "Andrés Iniesta" }, { num: 13, name: "Xavi Hernández" }, { num: 12, name: "Thierry Henry" }, { num: 11, name: "Roberto Carlos" },
+        { num: 10, name: "Ferenc Puskás" }, { num: 9, name: "Alfredo Di Stéfano" }, { num: 8, name: "Garrincha" }, { num: 7, name: "Johan Cruyff" }, { num: 6, name: "Ronaldo Nazário" },
+        { num: 5, name: "Ronaldinho Gaúcho" }, { num: 4, name: "Cristiano Ronaldo" }, { num: 3, name: "Pelé" }, { num: 2, name: "Diego Maradona" }, { num: 1, name: "Lionel Messi (THE GOAT)" }
     ];
 
-    let currentQuestionIndex = 0;
-    let score = 0;
+    // 50 Levels, structured with 3 questions per level. 
+    // If a player fails any question, they restart at question 0 of that exact level.
+    const levelsData = [];
+    for (let i = 1; i <= 50; i++) {
+        levelsData.push({
+            levelNum: i,
+            questions: [
+                { q: `Level ${i} - Q1: What is standard match procedure or rule in football?`, options: ["Kickoff from center circle", "Throw-in with two hands over head", "Direct free kick from box", "Corner kick from center spot"], answer: 0, img: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800", caption: "Match Kickoff" },
+                { q: `Level ${i} - Q2: Which equipment is mandatory for all professional players?`, options: ["Shin guards", "Gold necklace", "Smartwatch", "Baseball cap"], answer: 0, img: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800", caption: "Player Gear" },
+                { q: `Level ${i} - Q3: How many official substitutes are allowed to warm the bench maximum?`, options: ["3 substitutes", "7 to 15 substitutes", "Only 2", "Unlimited"], answer: 1, img: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800", caption: "Team Bench" }
+            ]
+        });
+    }
+
+    let currentLevelIndex = 0;
+    let currentQIndex = 0;
 
     function startQuiz() {
+        initAudio();
         document.getElementById('introScreen').style.display = 'none';
         document.getElementById('quizScreen').style.display = 'flex';
         loadQuestion();
     }
 
     function loadQuestion() {
-        if (currentQuestionIndex >= allQuestions.length) {
-            alert("Legendary Career Complete! You finished all 50 questions!");
-            location.reload();
-            return;
-        }
+        const levelData = levelsData[currentLevelIndex];
+        const qData = levelData.questions[currentQIndex];
 
-        const qData = allQuestions[currentQuestionIndex];
-        const currentLevel = Math.floor(currentQuestionIndex / 5) + 1;
-        const currentQInLevel = (currentQuestionIndex % 5) + 1;
-
-        document.getElementById('levelIndicator').innerText = `Level ${currentLevel} / 10`;
-        document.getElementById('questionCounter').innerText = `Question ${currentQInLevel} / 5`;
+        document.getElementById('levelIndicator').innerText = `Level ${levelData.levelNum} / 50`;
+        document.getElementById('questionStepIndicator').innerText = `Q ${currentQIndex + 1} / ${levelData.questions.length}`;
         document.getElementById('questionText').innerText = qData.q;
-        document.getElementById('quizScreen').style.backgroundImage = `url('${qData.bg}')`;
+        document.getElementById('questionImage').src = qData.img;
+        document.getElementById('imageCaption').innerText = qData.caption;
+        document.getElementById('quizScreen').style.backgroundImage = `url('${qData.img}')`;
 
         const optionsContainer = document.getElementById('optionsContainer');
         optionsContainer.innerHTML = '';
@@ -235,40 +264,60 @@
 
     function selectAnswer(selectedIndex, btnElement, correctIndex) {
         const optionButtons = document.querySelectorAll('.option-btn');
-        
-        // Disable all buttons to prevent double-clicking
         optionButtons.forEach(b => b.style.pointerEvents = 'none');
+
+        const levelData = levelsData[currentLevelIndex];
 
         if (selectedIndex === correctIndex) {
             btnElement.classList.add('correct');
-            score += 20;
-            document.getElementById('scoreDisplay').innerText = score;
+            playSound('correct');
+
+            setTimeout(() => {
+                currentQIndex++;
+                if (currentQIndex < levelData.questions.length) {
+                    loadQuestion();
+                } else {
+                    // Level completed successfully! Show Jersey Reward in reverse order (#50 down to #1)
+                    const jerseyObj = goatJerseys[currentLevelIndex]; // index 0 is #50, index 49 is #1
+                    document.getElementById('modalTitle').innerText = `Level ${levelData.levelNum} Cleared! 🎉`;
+                    document.getElementById('modalJerseyNum').innerText = `Official Jersey #${jerseyObj.num}`;
+                    document.getElementById('modalJerseyName').innerText = `${jerseyObj.name}`;
+                    document.getElementById('modalDesc').innerText = `Incredible performance! You mastered Level ${levelData.levelNum} and unlocked the legendary #${jerseyObj.num} jersey for your collection!`;
+                    document.getElementById('congratsModal').style.display = 'flex';
+                    playSound('congrats');
+                }
+            }, 1000);
+
         } else {
+            // Wrong answer! Reset back to question 1 of the current level
             btnElement.classList.add('wrong');
             optionButtons[correctIndex].classList.add('correct');
-        }
+            playSound('wrong');
 
-        setTimeout(() => {
-            currentQuestionIndex++;
-            // Check if level completed (every 5 questions)
-            if (currentQuestionIndex % 5 === 0 && currentQuestionIndex < allQuestions.length) {
-                const completedLevel = currentQuestionIndex / 5;
-                document.getElementById('modalTitle').innerText = `Level ${completedLevel} Cleared!`;
-                document.getElementById('modalDesc').innerText = `Congratulations! You mastered Level ${completedLevel}. Advancing to Level ${completedLevel + 1} with harder challenges...`;
-                document.getElementById('congratsModal').style.display = 'flex';
-            } else {
+            setTimeout(() => {
+                alert(`Incorrect! You missed a question on Level ${levelData.levelNum}. As penalty, you are returning to Question 1 of this level.`);
+                currentQIndex = 0; // Reset question pointer back to start of level
                 loadQuestion();
-            }
-        }, 1200);
+            }, 1200);
+        }
     }
 
     function nextLevel() {
         document.getElementById('congratsModal').style.display = 'none';
+        currentLevelIndex++;
+        currentQIndex = 0; // Reset question counter for the new level
+
+        if (currentLevelIndex >= levelsData.length) {
+            alert("LEGENDARY STATUS ACHIEVED! You have completed all 50 levels and collected all 50 Greatest Player Jerseys of all time!");
+            location.reload();
+            return;
+        }
+
         loadQuestion();
     }
 </script>
 
 </body>
 </html>
-
-        
+                 
+    
