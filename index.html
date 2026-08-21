@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultimate Football Career - 50 GOAT Jerseys Master Edition</title>
+<title>Ultimate Football Career - GOAT Edition</title>
 <style>
     :root {
         --bg-deep: #050814;
@@ -13,7 +13,6 @@
         --accent-emerald: #00ff88;
         --accent-crimson: #ff334b;
         --accent-amber: #ffb703;
-        --accent-cyan: #38bdf8;
         --border-glass: rgba(255, 255, 255, 0.15);
     }
 
@@ -27,12 +26,11 @@
         flex-direction: column;
         align-items: center;
         padding: 12px;
-        overflow-x: hidden;
     }
 
     .app-container {
         width: 100%;
-        max-width: 460px;
+        max-width: 440px;
         display: flex;
         flex-direction: column;
         gap: 14px;
@@ -52,25 +50,22 @@
         align-items: center;
         gap: 6px;
         background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
         padding: 8px 12px;
         border-radius: 12px;
         font-weight: 800;
         font-size: 13px;
         border: 1px solid var(--border-glass);
         color: #fff;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
-
     .logo-badge span {
         background: var(--accent-amber);
         color: #000;
-        width: 22px;
-        height: 22px;
+        width: 20px;
+        height: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 6px;
+        border-radius: 5px;
         font-weight: 900;
     }
 
@@ -79,7 +74,6 @@
         align-items: center;
         gap: 6px;
         background: rgba(255, 183, 3, 0.15);
-        backdrop-filter: blur(12px);
         padding: 8px 12px;
         border-radius: 12px;
         font-weight: 800;
@@ -87,18 +81,10 @@
         border: 1px solid rgba(255, 183, 3, 0.4);
         color: var(--accent-amber);
         cursor: pointer;
-        transition: transform 0.1s;
-    }
-    .jersey-tracker-badge:active { transform: scale(0.96); }
-
-    .header-controls {
-        display: flex;
-        gap: 6px;
     }
 
     .control-btn {
         background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
         padding: 8px 10px;
         border-radius: 12px;
         font-weight: 700;
@@ -108,17 +94,16 @@
         cursor: pointer;
     }
 
-    /* Intro / Menu Screen */
+    /* Intro Screen */
     .intro-screen {
         display: flex;
         flex-direction: column;
         gap: 16px;
         background: var(--card-surface);
         border: 2px solid rgba(255, 183, 3, 0.35);
-        backdrop-filter: blur(16px);
         padding: 22px;
         border-radius: 24px;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.7);
     }
 
     .subtitle-tag {
@@ -126,21 +111,11 @@
         font-size: 11px;
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 1.2px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-    .subtitle-tag::before {
-        content: "";
-        display: inline-block;
-        width: 14px;
-        height: 2px;
-        background: var(--accent-crimson);
+        letter-spacing: 1px;
     }
 
     .main-title {
-        font-size: 30px;
+        font-size: 28px;
         font-weight: 900;
         line-height: 1.1;
         color: #fff;
@@ -169,10 +144,8 @@
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
-        box-shadow: 0 8px 25px rgba(0, 255, 136, 0.35);
-        transition: transform 0.1s;
+        box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
     }
-    .btn-primary:active { transform: scale(0.98); }
 
     .btn-secondary {
         background: rgba(255, 255, 255, 0.08);
@@ -186,52 +159,20 @@
         text-align: center;
     }
 
-    .quick-meta {
-        font-size: 11px;
-        color: var(--text-secondary);
-        text-align: center;
-        font-weight: 600;
-    }
-
-    /* Featured Trophy Preview Card */
-    .season-card {
-        background: linear-gradient(135deg, #3b0764, #1e1b4b);
-        color: #fff;
-        border-radius: 16px;
-        padding: 18px;
-        position: relative;
-        overflow: hidden;
-        height: 125px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        border: 1px solid rgba(255,255,255,0.25);
-        box-shadow: 0 10px 20px rgba(59, 7, 100, 0.4);
-    }
-    .season-card-top {
-        display: flex;
-        justify-content: space-between;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 1px;
-        color: var(--accent-amber);
-    }
-
-    /* Quiz Screen Layout */
+    /* Quiz Screen */
     .quiz-screen {
         display: none;
         flex-direction: column;
         gap: 12px;
-        position: relative;
         border-radius: 24px;
         padding: 18px;
         background-size: cover;
         background-position: center;
-        min-height: 560px;
+        min-height: 520px;
         justify-content: space-between;
         border: 2px solid var(--border-glass);
+        position: relative;
         overflow: hidden;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.8);
     }
     .quiz-screen::before {
         content: "";
@@ -240,7 +181,6 @@
         background: linear-gradient(135deg, rgba(5, 8, 20, 0.92), rgba(30, 15, 60, 0.85));
         z-index: 1;
     }
-
     .quiz-content-wrapper {
         position: relative;
         z-index: 2;
@@ -258,18 +198,15 @@
         font-size: 13px;
         font-weight: 900;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
     .media-card-frame {
         width: 100%;
-        height: 125px;
-        border-radius: 14px;
+        height: 120px;
+        border-radius: 12px;
         overflow: hidden;
         position: relative;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        border: 2px solid rgba(255, 255, 255, 0.25);
         background: #121c38;
     }
     .media-card-frame img {
@@ -281,28 +218,24 @@
         position: absolute;
         bottom: 6px;
         left: 6px;
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(6px);
+        background: rgba(0, 0, 0, 0.75);
         color: var(--accent-amber);
         font-size: 10px;
         padding: 3px 8px;
         border-radius: 6px;
         font-weight: 800;
-        border: 1px solid rgba(255,255,255,0.15);
     }
 
     .question-box {
         background: rgba(20, 30, 60, 0.95);
-        backdrop-filter: blur(12px);
-        padding: 16px;
+        padding: 15px;
         border-radius: 14px;
         font-size: 15px;
         font-weight: 800;
         color: #fff;
         text-align: center;
-        border: 2px solid rgba(255, 255, 255, 0.18);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        line-height: 1.4;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        line-height: 1.35;
     }
 
     .options-grid {
@@ -313,7 +246,6 @@
 
     .option-btn {
         background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.2);
         padding: 13px 14px;
         border-radius: 12px;
@@ -322,11 +254,6 @@
         color: #fff;
         cursor: pointer;
         text-align: left;
-        transition: all 0.2s;
-    }
-    .option-btn:hover {
-        background: rgba(255, 255, 255, 0.18);
-        border-color: var(--accent-amber);
     }
     .option-btn.correct {
         background: rgba(0, 255, 136, 0.3) !important;
@@ -339,69 +266,43 @@
         color: #ff99a8 !important;
     }
 
-    /* Modals (Congratulatory Reward & Trophy Room) */
+    /* Modals */
     .modal-overlay {
         display: none;
         position: fixed;
         top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(5, 8, 20, 0.96);
-        backdrop-filter: blur(14px);
+        background: rgba(5, 8, 20, 0.95);
         z-index: 100;
         justify-content: center;
         align-items: center;
         padding: 20px;
     }
-
     .modal-card {
         background: linear-gradient(135deg, #111c38, #2a1050);
         border: 2px solid var(--accent-amber);
         width: 100%;
-        max-width: 380px;
-        border-radius: 24px;
-        padding: 26px;
+        max-width: 360px;
+        border-radius: 22px;
+        padding: 24px;
         text-align: center;
         display: flex;
         flex-direction: column;
-        gap: 14px;
-        box-shadow: 0 30px 60px rgba(0,0,0,0.9);
-        animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        max-height: 85vh;
-        overflow-y: auto;
+        gap: 12px;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.9);
     }
-    @keyframes popUp { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-
-    .modal-card h2 {
-        font-size: 22px;
-        color: var(--accent-amber);
-        font-weight: 900;
-    }
-
+    .modal-card h2 { font-size: 22px; color: var(--accent-amber); font-weight: 900; }
     .jersey-display {
         background: rgba(255, 183, 3, 0.12);
         border: 2px dashed var(--accent-amber);
-        padding: 16px;
-        border-radius: 16px;
+        padding: 14px;
+        border-radius: 14px;
         display: flex;
         flex-direction: column;
         gap: 4px;
     }
-    .jersey-num {
-        font-size: 26px;
-        font-weight: 900;
-        color: var(--accent-amber);
-    }
-    .jersey-name {
-        font-size: 15px;
-        font-weight: 800;
-        color: #fff;
-    }
-
-    .modal-card p {
-        font-size: 12px;
-        color: var(--text-secondary);
-        line-height: 1.45;
-    }
-
+    .jersey-num { font-size: 26px; font-weight: 900; color: var(--accent-amber); }
+    .jersey-name { font-size: 15px; font-weight: 800; color: #fff; }
+    .modal-card p { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
     .modal-btn {
         background: linear-gradient(135deg, var(--accent-amber), var(--accent-crimson));
         color: #050814;
@@ -411,70 +312,47 @@
         font-weight: 900;
         font-size: 14px;
         cursor: pointer;
-        box-shadow: 0 6px 15px rgba(255, 183, 3, 0.4);
     }
 
-    /* Trophy Room Cabinet List */
     .trophy-list {
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        text-align: left;
-        max-height: 250px;
+        gap: 6px;
+        max-height: 220px;
         overflow-y: auto;
-        padding-right: 4px;
+        text-align: left;
     }
     .trophy-item {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 10px 12px;
-        border-radius: 10px;
+        background: rgba(255,255,255,0.05);
+        padding: 8px 10px;
+        border-radius: 8px;
+        font-size: 12px;
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        font-size: 13px;
-        border: 1px solid var(--border-glass);
     }
-    .trophy-item.unlocked {
-        background: rgba(0, 255, 136, 0.1);
-        border-color: var(--accent-emerald);
-        color: var(--accent-emerald);
-        font-weight: 800;
-    }
+    .trophy-item.unlocked { color: var(--accent-emerald); font-weight: bold; background: rgba(0,255,136,0.1); }
 </style>
 </head>
 <body>
 
 <div class="app-container">
-    <!-- Header Navigation -->
+    <!-- Header (No Points Displayed) -->
     <div class="header">
         <div class="logo-badge"><span>⚽</span> GOAT QUIZ</div>
-        <div class="jersey-tracker-badge" id="headerJerseyTag" onclick="openTrophyRoom()">👕 #50 Next</div>
-        <div class="header-controls">
-            <button class="control-btn" onclick="openTrophyRoom()">🏆 Wardrobe</button>
-            <button class="control-btn" id="audioToggleBtn" onclick="toggleAudio()">🔊</button>
-        </div>
+        <div class="jersey-tracker-badge" id="headerJerseyTag" onclick="openWardrobe()">👕 #50 Next</div>
+        <button class="control-btn" onclick="openWardrobe()">🏆 Wardrobe</button>
     </div>
 
     <!-- Intro Screen -->
     <div id="introScreen" class="intro-screen">
-        <div class="subtitle-tag">Ultimate Career Mode</div>
+        <div class="subtitle-tag">Career Checkpoint Mode</div>
         <h1 class="main-title">Unlock All <span>50 GOAT Jerseys</span>!</h1>
-        <p class="intro-desc">Journey through 50 colorful levels with vibrant stadium backgrounds. Clear Level 1 to claim the #50 jersey down to Level 50 for the #1 GOAT jersey. <b>Rule:</b> If you miss any question, you instantly restart from Question 1 of that current level!</p>
+        <p class="intro-desc">Clear levels to claim official player jerseys. <b>Crucial Rule:</b> If you answer any question incorrectly, you are immediately sent back to Question 1 of that level!</p>
         
         <button class="btn-primary" onclick="startQuiz()">
-            Begin Career Match <span>➔</span>
+            Start Career Match <span>➔</span>
         </button>
-        <button class="btn-secondary" onclick="openTrophyRoom()">View Unlocked Jersey Room</button>
-        <div class="quick-meta">⚠️ Checkpoint Penalty Active · 👕 50 Greatest Jerseys Cycle</div>
-
-        <div class="season-card">
-            <div class="season-card-top">
-                <span>REWARD PREVIEW</span>
-                <span>LEVEL 1 ➔ #50 JERSEY</span>
-            </div>
-            <div style="font-size: 18px; font-weight: 900;">HRISTO STOICHKOV</div>
-            <div style="font-size: 11px; opacity: 0.9;">Climb to #1 Lionel Messi Jersey!</div>
-        </div>
+        <button class="btn-secondary" onclick="openWardrobe()">View Jersey Wardrobe</button>
     </div>
 
     <!-- Quiz Screen -->
@@ -485,7 +363,7 @@
                 <span id="questionStepIndicator">Q 1/3</span>
             </div>
             <div class="media-card-frame">
-                <img id="questionImage" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" alt="Football Visual">
+                <img id="questionImage" src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" alt="Visual">
                 <div class="media-card-badge" id="imageCaption">Match Arena</div>
             </div>
             <div class="question-box" id="questionText">Loading question...</div>
@@ -494,86 +372,30 @@
     </div>
 </div>
 
-<!-- Congratulatory Jersey Reward Modal -->
+<!-- Reward Modal -->
 <div class="modal-overlay" id="congratsModal">
     <div class="modal-card">
-        <div style="font-size: 38px;">👕🏆🔥</div>
-        <h2 id="modalTitle">Massive Congratulations!</h2>
+        <div style="font-size: 34px;">👕🔥</div>
+        <h2 id="modalTitle">Level Complete!</h2>
         <div class="jersey-display">
             <div class="jersey-num" id="modalJerseyNum">#50 Jersey</div>
             <div class="jersey-name" id="modalJerseyName">Player Name</div>
         </div>
-        <p id="modalDesc">Incredible performance! You conquered this level without failure and secured this legendary football icon's official jersey for your trophy room.</p>
-        <button class="modal-btn" onclick="nextLevel()">Claim & Proceed Next</button>
+        <p>Incredible job! You cleared the level without failing and unlocked this legendary jersey.</p>
+        <button class="modal-btn" onclick="nextLevel()">Continue to Next Level</button>
     </div>
 </div>
 
-<!-- Trophy Room Modal -->
-<div class="modal-overlay" id="trophyModal">
+<!-- Wardrobe Modal -->
+<div class="modal-overlay" id="wardrobeModal">
     <div class="modal-card">
-        <h2>🏆 GOAT Jersey Wardrobe</h2>
-        <p>Your collection of unlocked jerseys from Level 1 to 50.</p>
-        <div class="trophy-list" id="trophyListContainer"></div>
-        <button class="modal-btn" onclick="closeTrophyRoom()">Close Wardrobe</button>
+        <h2>🏆 Unlocked Jerseys</h2>
+        <div class="trophy-list" id="wardrobeList"></div>
+        <button class="modal-btn" onclick="closeWardrobe()">Close</button>
     </div>
 </div>
 
 <script>
-    // Audio Synthesizer Engine
-    let audioCtx = null;
-    let soundEnabled = true;
-
-    function initAudio() {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-    }
-
-    function playSound(type) {
-        if (!soundEnabled) return;
-        initAudio();
-        if (!audioCtx) return;
-
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        if (type === 'correct') {
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.2);
-            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.35);
-        } else if (type === 'wrong') {
-            osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-            osc.frequency.setValueAtTime(90, audioCtx.currentTime + 0.15);
-            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.3);
-        } else if (type === 'congrats') {
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-            osc.frequency.setValueAtTime(554.37, audioCtx.currentTime + 0.12);
-            osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.24);
-            osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.36);
-            gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.7);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.7);
-        }
-    }
-
-    function toggleAudio() {
-        soundEnabled = !soundEnabled;
-        document.getElementById('audioToggleBtn').innerText = soundEnabled ? "🔊" : "🔇";
-    }
-
-    // Official 50 Greatest Players of All Time Jerseys mapped from #50 (Level 1) down to #1 (Level 50)
     const goatJerseys = [
         { num: 50, name: "Hristo Stoichkov" }, { num: 49, name: "Gabriel Batistuta" }, { num: 48, name: "Michael Laudrup" }, { num: 47, name: "Peter Schmeichel" }, { num: 46, name: "Karl-Heinz Rummenigge" },
         { num: 45, name: "Cafu" }, { num: 44, name: "Dani Alves" }, { num: 43, name: "Sergio Ramos" }, { num: 42, name: "Gianluigi Buffon" }, { num: 41, name: "Manuel Neuer" },
@@ -583,28 +405,18 @@
         { num: 25, name: "Eusébio" }, { num: 24, name: "George Best" }, { num: 23, name: "Bobby Charlton" }, { num: 22, name: "Lev Yashin" }, { num: 21, name: "Zico" },
         { num: 20, name: "Sócrates" }, { num: 19, name: "Romário" }, { num: 18, name: "Rivaldo" }, { num: 17, name: "Ronaldinho" }, { num: 16, name: "Zinedine Zidane" },
         { num: 15, name: "Michel Platini" }, { num: 14, name: "Andrés Iniesta" }, { num: 13, name: "Xavi Hernández" }, { num: 12, name: "Paolo Rossi" }, { num: 11, name: "Roberto Carlos" },
-        { num: 10, name: "Ferenc Puskás (#10 Icon)" }, { num: 9, name: "Alfredo Di Stéfano (#9 Icon)" }, { num: 8, name: "Garrincha (#8 Icon)" }, { num: 7, name: "Johan Cruyff (#7 Icon)" }, { num: 6, name: "Ronaldo Nazário (#6 Icon)" },
-        { num: 5, name: "Zinedine Zidane (#5 Icon)" }, { num: 4, name: "Cristiano Ronaldo (#4 Icon)" }, { num: 3, name: "Pelé (#3 GOAT Icon)" }, { num: 2, name: "Diego Maradona (#2 GOAT Icon)" }, { num: 1, name: "Lionel Messi - THE #1 GOAT" }
+        { num: 10, name: "Ferenc Puskás" }, { num: 9, name: "Alfredo Di Stéfano" }, { num: 8, name: "Garrincha" }, { num: 7, name: "Johan Cruyff" }, { num: 6, name: "Ronaldo Nazário" },
+        { num: 5, name: "Zinedine Zidane" }, { num: 4, name: "Cristiano Ronaldo" }, { num: 3, name: "Pelé" }, { num: 2, name: "Diego Maradona" }, { num: 1, name: "Lionel Messi - #1 GOAT" }
     ];
 
-    const colorfulBackgrounds = [
-        { img: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1000", caption: "Neon Stadium Lights" },
-        { img: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=1000", caption: "Golden Pitch Action" },
-        { img: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=1000", caption: "Vibrant Match Atmosphere" },
-        { img: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=1000", caption: "Championship Glory" },
-        { img: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1000", caption: "Stadion Lighting Splendor" }
-    ];
-
-    // Handcrafted 50 Levels Database (3 questions per level with dynamic variation)
     const levelsData = [];
     for (let i = 1; i <= 50; i++) {
-        const bgChoice = colorfulBackgrounds[(i - 1) % colorfulBackgrounds.length];
         levelsData.push({
             levelNum: i,
             questions: [
-                { q: `Level ${i} - Q1: What is the official restart protocol when a match kicks off?`, options: ["Kickoff from center circle", "Drop ball in box", "Referee whistle toss", "Direct corner kick"], answer: 0, ...bgChoice },
-                { q: `Level ${i} - Q2: Which rule applies to executing a legal throw-in?`, options: ["Both hands over head with feet grounded", "Can use one hand smoothly", "Allowed to jump upon release", "Can kick the ball in instead"], answer: 0, ...bgChoice },
-                { q: `Level ${i} - Q3: What is the sanction when a defender commits a direct foul inside their box?`, options: ["Penalty kick awarded", "Indirect free kick", "Corner kick awarded", "Play continues normally"], answer: 0, ...bgChoice }
+                { q: `Level ${i} - Q1: What is standard protocol when a match starts?`, options: ["Kickoff from center circle", "Drop ball in box", "Coin toss with whistle", "Direct corner kick"], answer: 0, img: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800", caption: "Match Kickoff" },
+                { q: `Level ${i} - Q2: Which rule applies to a legal throw-in?`, options: ["Both hands over head with feet grounded", "Can use one hand smoothly", "Allowed to jump upon release", "Can kick the ball in instead"], answer: 0, img: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800", caption: "Touchline Throw" },
+                { q: `Level ${i} - Q3: What happens when a foul occurs inside the penalty box?`, options: ["Penalty kick awarded", "Indirect free kick outside", "Corner kick awarded", "Play continues"], answer: 0, img: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800", caption: "Penalty Area" }
             ]
         });
     }
@@ -614,7 +426,6 @@
     let unlockedLevelsCount = 0;
 
     function startQuiz() {
-        initAudio();
         document.getElementById('introScreen').style.display = 'none';
         document.getElementById('quizScreen').style.display = 'flex';
         loadQuestion();
@@ -630,7 +441,6 @@
         document.getElementById('headerJerseyTag').innerText = `👕 #${currentJersey.num} Next`;
         document.getElementById('questionText').innerText = qData.q;
         document.getElementById('questionImage').src = qData.img;
-        document.getElementById('imageCaption').innerText = qData.caption;
         document.getElementById('quizScreen').style.backgroundImage = `url('${qData.img}')`;
 
         const optionsContainer = document.getElementById('optionsContainer');
@@ -653,8 +463,6 @@
 
         if (selectedIndex === correctIndex) {
             btnElement.classList.add('correct');
-            playSound('correct');
-
             setTimeout(() => {
                 currentQIndex++;
                 if (currentQIndex < levelData.questions.length) {
@@ -667,22 +475,17 @@
                     document.getElementById('modalTitle').innerText = `Level ${levelData.levelNum} Cleared! 🎉`;
                     document.getElementById('modalJerseyNum').innerText = `Official Jersey #${jerseyObj.num}`;
                     document.getElementById('modalJerseyName').innerText = `${jerseyObj.name}`;
-                    document.getElementById('modalDesc').innerText = `Massive congratulations! You completed Level ${levelData.levelNum} without failing and unlocked the legendary #${jerseyObj.num} player jersey for your trophy room!`;
                     document.getElementById('congratsModal').style.display = 'flex';
-                    playSound('congrats');
                 }
-            }, 800);
-
+            }, 700);
         } else {
             btnElement.classList.add('wrong');
             optionButtons[correctIndex].classList.add('correct');
-            playSound('wrong');
-
             setTimeout(() => {
-                alert(`Incorrect answer! Penalty applied: You must restart from Question 1 of Level ${levelData.levelNum}.`);
-                currentQIndex = 0;
+                alert(`Wrong answer! Penalty: Returning to Question 1 of Level ${levelData.levelNum}.`);
+                currentQIndex = 0; // Resets back to question 1 of this level
                 loadQuestion();
-            }, 1000);
+            }, 900);
         }
     }
 
@@ -692,34 +495,30 @@
         currentQIndex = 0;
 
         if (currentLevelIndex >= levelsData.length) {
-            alert("IMMORTAL STATUS ACHIEVED! You have conquered all 50 levels and collected all 50 Greatest Player Jerseys of all time, culminating with the #1 Lionel Messi Jersey!");
+            alert("Legendary Status! You have conquered all 50 levels and unlocked all 50 GOAT jerseys!");
             location.reload();
             return;
         }
-
         loadQuestion();
     }
 
-    function openTrophyRoom() {
-        const container = document.getElementById('trophyListContainer');
-        container.innerHTML = '';
-
+    function openWardrobe() {
+        const list = document.getElementById('wardrobeList');
+        list.innerHTML = '';
         goatJerseys.forEach((jersey, index) => {
             const isUnlocked = index < unlockedLevelsCount;
-            const item = document.createElement('div');
-            item.className = `trophy-item ${isUnlocked ? 'unlocked' : ''}`;
-            item.innerHTML = `<span>#${jersey.num} - ${jersey.name}</span><span>${isUnlocked ? '👕 Unlocked' : '🔒 Locked'}</span>`;
-            container.appendChild(item);
+            const div = document.createElement('div');
+            div.className = `trophy-item ${isUnlocked ? 'unlocked' : ''}`;
+            div.innerHTML = `<span>#${jersey.num} - ${jersey.name}</span><span>${isUnlocked ? '👕 Unlocked' : '🔒 Locked'}</span>`;
+            list.appendChild(div);
         });
-
-        document.getElementById('trophyModal').style.display = 'flex';
+        document.getElementById('wardrobeModal').style.display = 'flex';
     }
 
-    function closeTrophyRoom() {
-        document.getElementById('trophyModal').style.display = 'none';
+    function closeWardrobe() {
+        document.getElementById('wardrobeModal').style.display = 'none';
     }
 </script>
 
 </body>
 </html>
-                                  
